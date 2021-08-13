@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 12:26:35 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/11 18:30:06 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/13 14:27:27 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 
 int		main(void)
 {
-	char	s1[12] = "mal ";
-	char	s2[] = "schauen";
+	char	s1[15] = "rrrrrr";
+	char	s2[] = "rtfm";
 
-	ft_strlcat(s1, s2, 12);
+	ft_strlcpy(s1, s2, 15);
 	printf("%s|%s|", s2, s1);
 	if (!*(s1 + 11))
 		printf("TRUE %c", *(s1 + 11));
