@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 14:45:50 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/07 12:52:48 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/12 18:32:18 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

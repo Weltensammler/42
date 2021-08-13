@@ -6,14 +6,16 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 13:12:10 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/09 13:38:23 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:07:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (*(s + i))
 		ft_putchar_fd(*(s + i++), fd);

@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/19 12:04:59 by bschende          #+#    #+#             */
-/*   Updated: 2021/07/27 19:19:22 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:08:12 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

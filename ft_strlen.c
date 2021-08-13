@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 17:38:35 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/07 12:51:38 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:07:55 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {

@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 16:07:03 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/05 17:36:42 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:07:19 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/19 10:36:16 by bschende          #+#    #+#             */
-/*   Updated: 2021/07/27 19:19:47 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:08:17 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_toupper(int c)
 {

@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 12:39:08 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/07 17:53:01 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:07:07 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memchr(const void *str, int c, size_t n)
 {

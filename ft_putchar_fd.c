@@ -6,9 +6,11 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 12:51:25 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/09 12:52:32 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/11 11:07:26 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
