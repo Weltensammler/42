@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 16:07:03 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/11 11:07:19 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/23 18:46:43 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char	*temp2;
 
 	i = 0;
+	if (!dest && !src)
+		return (NULL);
 	temp2 = (char *)dest;
 	temp = (char *)src;
 	if (dest > src)
@@ -31,12 +33,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 	}
 	else
-	{
-		while (i < (int)n)
-		{
-			*(temp2 + i) = *(temp + i);
-			i++;
-		}
-	}
+		dest = ft_memcpy(temp2, temp, n);
 	return (dest);
 }

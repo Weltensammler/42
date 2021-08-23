@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 13:18:12 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/12 13:25:04 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/23 16:17:52 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
+char	**ft_split(const char *s, char c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *string);
 char	*ft_strjoin(char const *s1, char const *s2);
