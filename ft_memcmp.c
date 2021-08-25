@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 17:47:55 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/13 11:51:42 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/24 15:48:36 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	while (i < (int)n)
 	{
 		if (*(temp + i) < *(temp2 + i))
-			return (-1);
+			return (*(temp + i) - *(temp2 + i));
 		else if (*(temp + i) > *(temp2 + i))
-			return (1);
+			return (*(temp + i) - *(temp2 + i));
 		else if (i == (int)n && *(temp + i) == *(temp2 + i))
 			return (0);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 13:39:09 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/13 11:12:39 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/25 04:56:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int	ft_atoi(const char *str)
 		return (0);
 	while (ft_isdigit(*(str + i)))
 		value = value * 10 + *(str + i++) - '0';
-	return (sign * value);
+	return ((int)(sign * value));
 }
