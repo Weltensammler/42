@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/07 18:09:31 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/13 12:30:26 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/27 20:08:49 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		{
 			if (ft_memcmp((char *)haystack + i, (char *)needle, size))
 				i++;
-			else if ((size + i - 1) > len)
+			else if ((size + i - 1) >= len)
 				return (0);
 			else
 				return ((char *)haystack + i);

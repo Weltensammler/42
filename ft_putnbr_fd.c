@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 13:01:20 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/13 18:16:16 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/27 20:09:05 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_putnbr_fd(int n, int fd)
 		mop = '-';
 		n = n * -1;
 	}
-	while (n > 10)
+	while (n >= 10)
 	{
 		arr[i++] = (n % 10) + '0';
 		n = n / 10;
