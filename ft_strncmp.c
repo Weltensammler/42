@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 16:32:43 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/27 20:06:43 by bschende         ###   ########.fr       */
+/*   Updated: 2021/08/30 13:30:37 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	while (i < n)
 	{
 		if (*(temp1 + i) < *(temp2 + i))
-			return (-1);
+			return ((*(temp1 + i)) - (*(temp2 + i)));
 		else if (*(temp1 + i) > *(temp2 + i))
-			return (1);
+			return ((*(temp1 + i)) - (*(temp2 + i)));
 		else if (i == n && *(temp1 + i) == *(temp2 + i))
-			return (0);
+			return ((*(temp1 + i)) - (*(temp2 + i)));
 		else if (!*(temp1 + i) && !*(temp2 + i))
 			break ;
 		i++;
