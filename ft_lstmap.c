@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 16:57:46 by bschende          #+#    #+#             */
-/*   Updated: 2021/09/12 18:33:06 by bschende         ###   ########.fr       */
+/*   Updated: 2021/09/14 17:28:16 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new;
 	t_list	*first;
 
-	if (!f || !del)
+	if (!f)
 		return (NULL);
 	first = NULL;
 	while (lst)
@@ -28,7 +28,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			while (first)
 			{
 				new = first->next;
-				(*del)(first->content);
+				if (del)
+					(*del)(first->content);
 				free(first);
 				first = new;
 			}

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 16:40:18 by bschende          #+#    #+#             */
-/*   Updated: 2021/09/12 16:56:00 by bschende         ###   ########.fr       */
+/*   Updated: 2021/09/13 16:36:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	if (!lst)
 		return ;
 	ptr = lst;
-	while (ptr->next)
+	while (ptr)
 	{
 		(*f)(ptr->content);
 		ptr = ptr->next;

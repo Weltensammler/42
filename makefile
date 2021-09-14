@@ -26,14 +26,12 @@ $(NAME): $(SOURCE)
 	ranlib $(NAME)
 
 clean:
-	rm -rf $(OBJECTS)
+	rm -rf $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
-bonus: $(SOURCE) $(BONUS)
-	gcc $(FLAGS) -I$(INCLUDE) -c $(SOURCE) $(BONUS)
-	ar rc $(NAME) $(OBJECTS) $(BUNUS_OBJECTS)
-	ranlib $(NAME)
+bonus: $(OBJECTS) $(BONUS_OBJECTS)
+	ar rc $(NAME) $(OBJECTS) $(BONUS_OBJECTS)
