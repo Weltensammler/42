@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:45:26 by bschende          #+#    #+#             */
-/*   Updated: 2021/10/17 23:19:21 by bschende         ###   ########.fr       */
+/*   Updated: 2021/10/17 23:50:01 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,23 @@ int	ft_itoa(int *p)
 	int			i;
 
 	num = *p;
-	i = 0;
+	i = -1;
 	x = ft_count(num);
 	numbr1 = ft_calloc(1, ft_count(num) + 2);
 	if (!numbr1)
 		return (0);
 	if (num < 0)
-	{
 		*numbr1 = '-';
+	if (num < 0)
 		num = num * -1;
-	}
 	while (num >= 10)
 	{
 		*(numbr1 + x--) = (num % 10) + '0';
 		num = num / 10;
 	}
 	*(numbr1 + x) = num + '0';
-	while (*(numbr1 + i))
-	{
+	while (*(numbr1 + ++i))
 		write(1, (numbr1 + i), 1);
-		i++;
-	}
 	free(numbr1);
 	return (i);
 }

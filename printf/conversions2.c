@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:45:22 by bschende          #+#    #+#             */
-/*   Updated: 2021/10/17 21:52:56 by bschende         ###   ########.fr       */
+/*   Updated: 2021/10/17 23:25:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ int	dectohex_ptr(unsigned long n, int base, char *base_str)
 	static int	hexlen_ptr;
 
 	hexlen_ptr = 0;
-
-	if (n/base)
-		dectohex_ptr(n/base, base, base_str);
+	if (n / base)
+		dectohex_ptr(n / base, base, base_str);
 	hexlen_ptr++;
 	index = n % base;
 	write(1, &base_str[index], 1);

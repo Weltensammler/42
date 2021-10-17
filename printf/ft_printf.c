@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:45:29 by bschende          #+#    #+#             */
-/*   Updated: 2021/10/17 23:13:27 by bschende         ###   ########.fr       */
+/*   Updated: 2021/10/17 23:39:52 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	numbers(va_list ap, char flag)
 
 	j = 0;
 	value = ft_calloc(1, sizeof(long int));
-	*value = va_arg(ap, int);
+	*value = va_arg(ap, long int);
 	j = numconversion(value, flag);
 	free(value);
 	return (j);
