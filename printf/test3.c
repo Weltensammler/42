@@ -9,30 +9,6 @@ int	ft_putchar_fd(char c, int fd)
 	return (1);
 }
 
-unsigned long    dectohex_ptr(unsigned long n, int base, char *base_str)
-{
-    int            index;
-    static int    hexlen_ptr;
-
-    hexlen_ptr = 0;
-
-    if (n/base)
-        dectohex_ptr(n/base, base, base_str);
-    hexlen_ptr++;
-    index = n % base;
-    write(1, &base_str[index], 1);
-    return (hexlen_ptr);
-}
-
-unsigned long    print_ptr_addr(unsigned long *p)
-{
-    unsigned long    i;
-
-    ft_putstr_fd("0x", 1);
-    i = dectohex_ptr((unsigned long)p, 16, "0123456789abcdef");
-    return (i);
-}
-
 void	*zeromem(void *str, size_t n)
 {
 	int				i;
@@ -74,30 +50,58 @@ static int	ft_count(long int n)
 	return (i);
 }
 
-	char	*ft_itoa(int n)
-	{
-		int			x;
-		long int	num;
-		char		*numbr1;
+int	dectohex_ptr(unsigned long n, int base, char *base_str)
+{
+	int			index;
+	static int	hexlen_ptr;
 
-		num = n;
-		x = ft_count(num);
-		numbr1 = ft_calloc(1, ft_count(num) + 2);
-		if (!numbr1)
-			return (NULL);
-		if (num < 0)
-		{
-			*numbr1 = '-';
-			num = num * -1;
-		}
-		while (num >= 10)
-		{
-			*(numbr1 + x--) = (num % 10) + '0';
-			num = num / 10;
-		}
-		*(numbr1 + x) = num + '0';
-		return (numbr1);
+	hexlen_ptr = 0;
+
+	if (n/base)
+		dectohex_ptr(n/base, base, base_str);
+	hexlen_ptr++;
+	index = n % base;
+	write(1, &base_str[index], 1);
+	return (hexlen_ptr);
+}
+
+int	print_ptr_addr(va_list ap)
+{
+	int				i;
+	unsigned long	value;
+
+	i = 2;
+	value = va_arg(ap, unsigned long);
+	ft_putchar_fd('0', 1);
+	ft_putchar_fd('x', 1);
+	i += dectohex_ptr((unsigned long)value, 16, "0123456789abcdef");
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	int			x;
+	long int	num;
+	char		*numbr1;
+
+	num = n;
+	x = ft_count(num);
+	numbr1 = ft_calloc(1, ft_count(num) + 2);
+	if (!numbr1)
+		return (NULL);
+	if (num < 0)
+	{
+		*numbr1 = '-';
+		num = num * -1;
 	}
+	while (num >= 10)
+	{
+		*(numbr1 + x--) = (num % 10) + '0';
+		num = num / 10;
+	}
+	*(numbr1 + x) = num + '0';
+	return (numbr1);
+}
 
 char	*ft_uitoa(unsigned int n)
 {
@@ -117,19 +121,6 @@ char	*ft_uitoa(unsigned int n)
 	}
 	*(numbr1 + x) = num + '0';
 	return (numbr1);
-}
-
-int	count(char *s)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	while (*(s + ++i))
-		if (*(s + i) == '%')
-			j++;
-	return (j);
 }
 
 int	wint(int *p)
@@ -156,17 +147,19 @@ int	wuint(unsigned int *p)
 	return (i);
 }
 
-int	wstr(char *s)
+int	wstr(va_list ap)
 {
-	int	i;
+	int		i;
+	char	*string;
 
 	i = 0;
-	while (*(s + i))
-		write(1, (s + i++), 1);
+	string = va_arg(ap, char *);
+	while (*(string + i))
+		write(1, (string + i++), 1);
 	return (i);
 }
 
-int	dectohex(int n, int base, char *base_str)
+int	dectohex(unsigned int n, int base, char *base_str)
 {
 	int			index;
 	static int	hexlen;
@@ -191,8 +184,6 @@ int	function(void *p, char flag)
 		i = wuint(p);
 	if (flag == 'c')
 		i = write(1, p, 1);
-	if (flag == 's')
-		i = wstr(p);
 	if (flag == 'x')
 		i = dectohex(*((int *)p), 16, "0123456789abcdef");
 	if (flag == 'X')
@@ -213,17 +204,6 @@ int	numbers(va_list ap, char flag)
 	return (j);
 }
 
-int	strings(va_list ap, char flag)
-{
-	char	*string;
-	int		j;
-
-	j = 0;
-	string = va_arg(ap, char *);
-	j = function(string, flag);
-	return (j);
-}
-
 int	ft_printf(const char *fmt, va_list ap)
 {
 	int				i;
@@ -240,9 +220,9 @@ int	ft_printf(const char *fmt, va_list ap)
 			if (*(fmt + i) == 'u' || *(fmt + i) == 'x' || *(fmt + i) == 'X')
 				j += numbers(ap, *(fmt + i));
 			if (*(fmt + i) == 'p')
-				j += numbers(ap, *(fmt + i));
+				j += print_ptr_addr(ap);
 			if (*(fmt + i) == 's')
-				j += strings(ap, *(fmt + i));
+				j += wstr(ap);
 			if (*(fmt + i) == '%')
 				j += ft_putchar_fd('%', 1);
 			i++;
@@ -273,13 +253,15 @@ int	main(void)
 	char				c;
 	char				*string = "wolf";
 	int					toto;
+	char				*ptr;
 
 	toto = 2545;
 	c = 'A';
 	tval = 4294967295;
 	fg = 95;
-	org = printf("%cabcdeefhuewhfhwheiofhowheoifghoweh%uiofhoiwehf%doiuewqhgfew%ukrhgk%%uehwqrlkghkl%stutu%xavec\n", c, tval, fg, tval, string, toto);
-	my = ft_testf("%cabcdeefhuewhfhwheiofhowheoifghoweh%uiofhoiwehf%doiuewqhgfew%ukrhgk%%uehwqrlkghkl%stutu%xavec\n", c, tval, fg, tval, string, toto);
+	ptr = string;
+	org = printf("%cabcdeefhuewhfhwheiofhowheoifghoweh%uiofhoiwehf%doiuewqhgfew%ukrhgk%%uehwqrlkghkl%stutu%xav%pec\n", c, tval, fg, tval, string, toto, ptr);
+	my = ft_testf("%cabcdeefhuewhfhwheiofhowheoifghoweh%uiofhoiwehf%doiuewqhgfew%ukrhgk%%uehwqrlkghkl%stutu%xav%pec\n", c, tval, fg, tval, string, toto, ptr);
 	printf("%i\n%i", org, my);
 	return (0);
 }
