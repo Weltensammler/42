@@ -1,6 +1,0 @@
-And  then,
-of course,
-there is always the Stack Exchange data dumps.
-The latest one includes all public non-beta Stack Exchange sites & corresponding Meta sites up until September 2011.
-But, naturally Stack Exchange posts are concentrated on the scope of each site, so probably not as 
-generalized as you'd Meta posts are a bit more general though, so you could consider those in
