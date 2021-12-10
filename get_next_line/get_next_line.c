@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 14:39:17 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/03 18:16:46 by bschende         ###   ########.fr       */
+/*   Updated: 2021/12/10 12:15:03 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*fillstring(int fd, char *string1)
 	char	*buffer;
 	int		i;
 
-	buffer = malloc(BUFFER_SIZE + 1 * sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	i = 1;

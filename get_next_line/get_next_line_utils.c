@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 13:23:47 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/03 18:16:21 by bschende         ###   ########.fr       */
+/*   Updated: 2021/12/10 12:53:56 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
@@ -45,22 +45,24 @@ char	*ft_strjoin(char *string1, char *string2)
 	int		j;
 
 	if (!string1)
-		string1 = malloc(1 * sizeof(char));
+	{
+		string1 = (char *)malloc(1 * sizeof(char));
+		*(string1 + 0) = '\0';
+	}
 	if (!string1 || !string2)
 		return (NULL);
 	str = malloc(ft_strlen(string1) + ft_strlen(string2) + 1);
 	if (!str)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (*(string1 + i))
-	{
-		*(str + i) = *(string1 + i);
-		i++;
-	}
+	if (string1)
+		while (*(string1 + ++i))
+			*(str + i) = *(string1 + i);
 	while (*(string2 + j))
 		*(str + i++) = *(string2 + j++);
 	*(str + i) = '\0';
+	free(string1);
 	return (str);
 }
 
@@ -74,7 +76,7 @@ char	*output(char *string1)
 		return (NULL);
 	while (*(string1 + i) && *(string1 + i) != '\n')
 		i++;
-	str = malloc((i * sizeof(char)) + 2);
+	str = malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -101,7 +103,7 @@ char	*new_string(char *string1)
 	i = 0;
 	while (*(string1 + i) && *(string1 + i) != '\n')
 		i++;
-	if (!string1)
+	if (!*(string1 + i))
 	{
 		free(string1);
 		return (NULL);
