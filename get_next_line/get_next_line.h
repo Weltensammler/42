@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 12:25:42 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/10 15:31:57 by ben              ###   ########.fr       */
+/*   Updated: 2021/12/10 16:07:59 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <stdlib.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 char	*fillstring(int fd, char *string1);
