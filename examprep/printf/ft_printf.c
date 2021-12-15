@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-int	dectohex(long long int n, int base, char *base_str)
+int	dectodec(long long int n, int base, char *base_str)
 {
 	int			index;
 	static int	hexlen;
@@ -17,11 +17,25 @@ int	dectohex(long long int n, int base, char *base_str)
 		i++;
 	}
 	if (n / base)
-		dectohex(n / base, base, base_str);
+		dectodec(n / base, base, base_str);
 	hexlen++;
 	index = n % base;
 	write(1, &base_str[index], 1);
 	return (hexlen + i);
+}
+
+int	dectohex(unsigned int n, int base, char *base_str)
+{
+	int			index;
+	static int	hexlen;
+
+	hexlen = 0;
+	if (n / base)
+		dectohex(n / base, base, base_str);
+	hexlen++;
+	index = n % base;
+	write(1, &base_str[index], 1);
+	return (hexlen);
 }
 
 int	wstr(va_list ap)
@@ -53,7 +67,7 @@ int	ft_printf(const char *fmt, ...)
 		{
 			i++;
 			if (*(fmt + i) == 'd')
-				j += dectohex(va_arg(ap, int), 10, "0123456789");
+				j += dectodec(va_arg(ap, int), 10, "0123456789");
 			if (*(fmt + i) == 'x')
 				j += dectohex(va_arg(ap, long long int), 16, "0123456789abcdef");
 			if (*(fmt + i) == 's')
@@ -67,7 +81,7 @@ int	ft_printf(const char *fmt, ...)
 	return (j);
 }
 
-int main()
+/*int main()
 {
 	char *ch = "(a string)";
 	int	i;
@@ -117,4 +131,4 @@ int main()
 	printf("\n");
 
 	return (0);
-}
+}*/
