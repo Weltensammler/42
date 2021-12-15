@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int				i;
 	int				j;
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 			{
 				if (!used[(unsigned char)argv[j][i]] && j == 2)
 					used[(unsigned char)argv[j][i]] = 1;
-				if (used[(unsigned char)argv[j][i]] == 1 && j == 1)
+				else if (used[(unsigned char)argv[j][i]] == 1 && j == 1)
 				{
 					used[(unsigned char)argv[j][i]] = 2;
 					write(1, &argv[j][i], 1);
