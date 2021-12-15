@@ -58,8 +58,6 @@ int	ft_printf(const char *fmt, ...)
 				j += dectohex(va_arg(ap, long long int), 16, "0123456789abcdef");
 			if (*(fmt + i) == 's')
 				j += wstr(ap);
-			if (*(fmt + i) == '%')
-				j += write(1, "%", 1);
 			i++;
 		}
 		if (*(fmt + i) && *(fmt + i) != '%')
