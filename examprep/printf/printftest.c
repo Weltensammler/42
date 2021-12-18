@@ -1,6 +1,66 @@
-#include <stdio.h>
-#include <unistd.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
+
+int	dectohex(unsigned int n, int base, char *base_str)
+{
+	static int	hexlen;
+	int			index;
+
+	hexlen = 0;
+	if (n / base)
+		dectohex(n / base, base, base_str);
+	index = n % base;
+	hexlen++;
+	write(1, &base_str[index], 1);
+	return (hexlen);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int	wstr(va_list ap)
+{
+	int		i;
+	char	*string;
+
+	i = 0;
+	string = va_arg(ap, char*);
+	if (!string)
+		string = "(null)";
+	while (*(string + i))
+		write(1, (string + i++), 1);
+	return (i);
+}
 
 int	dectodec(int n, int base, char *base_str)
 {
@@ -20,7 +80,7 @@ int	dectodec(int n, int base, char *base_str)
 		if (n < 0)
 			dectodec((n / base) * -1, base, base_str);
 		else
-			dectodec(n / base, base, base_str);
+			dectodec((n / base), base, base_str);
 	}
 	hexlen++;
 	index = n % base;
@@ -32,49 +92,35 @@ int	dectodec(int n, int base, char *base_str)
 
 int	dectohex(unsigned int n, int base, char *base_str)
 {
-	static int	hexlen;
 	int			index;
+	static int	hexlen;
 
 	hexlen = 0;
 	if (n / base)
 		dectohex(n / base, base, base_str);
-	index = n % base;
 	hexlen++;
+	index = n % base;
 	write(1, &base_str[index], 1);
 	return (hexlen);
 }
 
-int	wstr(va_list ap)
-{
-	int		i;
-	char	*string;
-
-	i = 0;
-	string = va_arg(ap, char *);
-	if (!string)
-		string = "(null)";
-	while (*(string + i))
-		write(1, (string + i++), 1);
-	return (i);
-}
-
 int	ft_printf(const char *fmt, ...)
 {
-	va_list		ap;
-	int			i;
-	int			j;
+	va_list	ap;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
 	va_start(ap, fmt);
-	while (*(fmt + i))
+	while(*(fmt + i))
 	{
 		if (*(fmt + i) == '%')
 		{
 			i++;
 			if (*(fmt + i) == 'd')
 				j += dectodec(va_arg(ap, int), 10, "0123456789");
-			if (*(fmt + i) == 'x')
+			if (*(fmt + i) == 'd')
 				j += dectohex(va_arg(ap, int), 16, "0123456789abcdef");
 			if (*(fmt + i) == 's')
 				j += wstr(ap);

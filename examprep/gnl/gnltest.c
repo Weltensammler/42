@@ -1,9 +1,7 @@
-#include "gnltest.h"
-
-char	*get_next_line(int fd)
+int	gnl(int fd)
 {
-	int		i;
-	int		read_count;
+	int	i;
+	int	read_count;
 	char	c;
 	char	*line;
 
