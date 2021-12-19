@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 21:07:23 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/19 21:11:14 by bschende         ###   ########.fr       */
+/*   Updated: 2021/12/19 21:40:47 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,24 @@ void	send_message(int pid, char *string)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	i = 0;
 	while (*(string + i))
 	{
-		c = *(string + i);
 		j = 0;
 		while (j < 7)
 		{
-			if ((c & 1) == 0)
+			if ((*(string + i) & 1) == 0)
 			{
 				kill(pid, SIGUSR1);
 				usleep(100);
 			}
-			if ((c & 1) == 1)
+			if ((*(string + i) & 1) == 1)
 			{
 				kill(pid, SIGUSR2);
 				usleep(100);
 			}
-			c = c >> 1;
+			*(string + i) = *(string + i) >> 1;
 			j++;
 		}
 		i++;

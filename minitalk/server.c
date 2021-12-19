@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 21:07:32 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/19 21:08:28 by bschende         ###   ########.fr       */
+/*   Updated: 2021/12/19 23:57:08 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, &arr[i--], 1);
 }
 
-void	receive(int signum)
+void	receive(int sig)
 {
 	static unsigned char	k = '\0';
 	static int				i = 0;
 
-	if (signum == SIGUSR1)
+	if (sig == SIGUSR1)
 		i++;
-	if (signum == SIGUSR2)
+	if (sig == SIGUSR2)
 	{
 		if (i != 7)
 			k += 1 << i;
@@ -58,17 +58,14 @@ void	receive(int signum)
 	if (i == 7)
 	{
 		write(1, &k, 1);
-		if (k == '\0')
-			write(1, "\n", 1);
 		i = 0;
 		k = '\0';
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(void)
 {
-	int pid;
-	char *pidchar;
+	int		pid;
 
 	pid = getpid();
 	ft_putnbr_fd(pid, 1);
