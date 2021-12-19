@@ -1,5 +1,5 @@
-NAME_CLIENT		=		client
-NAME_SERVER		=		server
+NAME_CLIENT = client
+NAME_SERVER = server
 
 CC = gcc
 
