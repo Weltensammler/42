@@ -1,25 +1,35 @@
-SOURCE = solong.c
+SOURCE = test.c
 
 OBJECTS = $(SOURCE:.c=.o)
 
 FLAGS = -Werror -Wall -Wextra
 
-NAME = libft.a
-NAME2 = mlx.a
-
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
-$(NAME2): $(OBJ)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME2)
+NAME = so_long
 
 all: $(NAME)
 
-$(NAME): $(SOURCE)
-	gcc $(FLAGS) $(SOURCE)
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+# $(NAME): $(OBJ)
+# 	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+# %.o: %.c
+# 	$(CC) -Wall -Wextra -Werror -Imlx/minilibx_macos -c $< -o $@
+
+$(NAME): $(OBJ)
+	make bonus -C ./libft
+	make -C ./get_next_line
+	$(CC) $(SOURCE) ./libft/libft.a ./get_next_line/get_next_line.a ./mlx/libmlx.a -L /usr/X11/lib -lX11 -lXext -o $(NAME)
+
+# $(NAME): $(OBJ)
+# 	$(CC) $(OBJ)  -L /usr/X11/lib -lX11 -lXext -o $(NAME)
+
+# $(NAME): $(SOURCE)
+# 	gcc $(FLAGS) $(SOURCE)
 
 clean:
-	rm -rf $(OBJECTS) $(BONUS_OBJECTS)
+	rm -rf $(OBJECTS)
 
 fclean: clean
 	rm -rf $(NAME)
