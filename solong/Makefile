@@ -1,4 +1,4 @@
-SOURCE = test.c
+SOURCE = backup.c check_map.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

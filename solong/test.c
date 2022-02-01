@@ -1,10 +1,16 @@
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "./mlx/mlx.h"
-# include "./libft/libft.h"
-# include "./get_next_line/get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 13:04:43 by bschende          #+#    #+#             */
+/*   Updated: 2022/01/31 13:44:13 by bschende         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
 
 int	countlines(char *string)
 {
@@ -83,7 +89,7 @@ int	walledin(char **array, int lines, int col)
 		{
 			if (!ft_strchr("1\n", array[0][j]) || !ft_strchr("1\n", array[lines - 1][j]))
 			{
-				printf("ERROR map not walled in!1");
+				printf("ERROR map not walled in!");
 				return (0);
 			}
 			j++;
@@ -92,7 +98,7 @@ int	walledin(char **array, int lines, int col)
 		{
 			if (array[i][0] != '1' || array[i][col - 1] != '1')
 			{
-				printf("ERROR map not walled in!2");
+				printf("ERROR map not walled in!");
 				return (0);
 			}
 			i++;
@@ -102,92 +108,80 @@ int	walledin(char **array, int lines, int col)
 	return (1);
 }
 
-void	createwindow(char **array, int lines, int col)
+void	createwindow(t_solong *vars)
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*img_wall;
-	void	*img_char;
-	void	*img_item;
-	void	*img_floor;
-	void	*img_exit;
-	char	*relative_path_wall = "./images/wall.xpm";
-	char	*relative_path_char = "./images/character.xpm";
-	char	*relative_path_item = "./images/item.xpm";
-	char	*relative_path_floor = "./images/floor.xpm";
-	char	*relative_path_exit = "./images/exit.xpm";
-	int		img_width;
-	int		img_height;
-	int		y;
-	int		x;
-	int		c;
-	int		l;
-	int		i;
-	int		j;
-
-	c = 100 * col;
-	l = 100 * lines;
-	x = 0;
-	y = 0;
-	i = 0;
-	j = 0;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, c, l, "Hello world!");
-	img_wall = mlx_xpm_file_to_image(mlx, relative_path_wall, &img_width, &img_height);
-	img_char = mlx_xpm_file_to_image(mlx, relative_path_char, &img_width, &img_height);
-	img_item = mlx_xpm_file_to_image(mlx, relative_path_item, &img_width, &img_height);
-	img_floor = mlx_xpm_file_to_image(mlx, relative_path_floor, &img_width, &img_height);
-	img_exit = mlx_xpm_file_to_image(mlx, relative_path_exit, &img_width, &img_height);
-	while (array[i])
+	vars->win->relative_path_wall = "./images/wall.xpm";
+	vars->win->relative_path_char = "./images/character.xpm";
+	vars->win->relative_path_item = "./images/item.xpm";
+	vars->win->relative_path_floor = "./images/floor.xpm";
+	vars->win->relative_path_exit = "./images/exit.xpm";
+	vars->win->c = 100 * vars->col;
+	vars->win->l = 100 * vars->lines;
+	vars->win->x = 0;
+	vars->win->y = 0;
+	vars->win->i = 0;
+	vars->win->j = 0;
+	vars->win->mlx = mlx_init();
+	vars->win->mlx_win = mlx_new_window(vars->win->mlx, vars->win->c, vars->win->l, "Hello world!");
+	vars->win->img_wall = mlx_xpm_file_to_image(vars->win->mlx, vars->win->relative_path_wall, &vars->win->img_width, &vars->win->img_height);
+	vars->win->img_char = mlx_xpm_file_to_image(vars->win->mlx, vars->win->relative_path_char, &vars->win->img_width, &vars->win->img_height);
+	vars->win->img_item = mlx_xpm_file_to_image(vars->win->mlx, vars->win->relative_path_item, &vars->win->img_width, &vars->win->img_height);
+	vars->win->img_floor = mlx_xpm_file_to_image(vars->win->mlx, vars->win->relative_path_floor, &vars->win->img_width, &vars->win->img_height);
+	vars->win->img_exit = mlx_xpm_file_to_image(vars->win->mlx, vars->win->relative_path_exit, &vars->win->img_width, &vars->win->img_height);
+	while (vars->array[vars->win->i])
 	{
-		while (array[i][j])
+		while (vars->array[vars->win->i][vars->win->j])
 		{
-			if (array[i][j] == '1')
-				mlx_put_image_to_window(mlx, mlx_win, img_wall, x, y);
-			if (array[i][j] == '0')
-				mlx_put_image_to_window(mlx, mlx_win, img_floor, x, y);
-			if (array[i][j] == 'P')
-				mlx_put_image_to_window(mlx, mlx_win, img_char, x, y);
-			if (array[i][j] == 'C')
-				mlx_put_image_to_window(mlx, mlx_win, img_item, x, y);
-			if (array[i][j] == 'E')
-				mlx_put_image_to_window(mlx, mlx_win, img_exit, x, y);
-			j++;
-			x += 100;
+			if (vars->array[vars->win->i][vars->win->j] == '1')
+				mlx_put_image_to_window(vars->win->mlx, vars->win->mlx_win, vars->win->img_wall, vars->win->x, vars->win->y);
+			if (vars->array[vars->win->i][vars->win->j] == '0')
+				mlx_put_image_to_window(vars->win->mlx, vars->win->mlx_win, vars->win->img_floor, vars->win->x, vars->win->y);
+			if (vars->array[vars->win->i][vars->win->j] == 'P')
+				mlx_put_image_to_window(vars->win->mlx, vars->win->mlx_win, vars->win->img_char, vars->win->x, vars->win->y);
+			if (vars->array[vars->win->i][vars->win->j] == 'C')
+				mlx_put_image_to_window(vars->win->mlx, vars->win->mlx_win, vars->win->img_item, vars->win->x, vars->win->y);
+			if (vars->array[vars->win->i][vars->win->j] == 'E')
+				mlx_put_image_to_window(vars->win->mlx, vars->win->mlx_win, vars->win->img_exit, vars->win->x, vars->win->y);
+			vars->win->j++;
+			vars->win->x += 100;
 		}
-		y += 100;
-		x = 0;
-		j = 0;
-		i++;
+		vars->win->y += 100;
+		vars->win->x = 0;
+		vars->win->j = 0;
+		vars->win->i++;
 	}
-	mlx_loop(mlx);
+	mlx_loop(vars->win->mlx);
+}
+
+int	closewin(int keycode, t_solong *vars)
+{
+	mlx_destroy_window(vars->win->mlx, vars->win->mlx_win);
+	printf("%i\n", keycode);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	char	*line;
-	char	*string;
-	char	**array;
-	int		lines;
-	int		col;
-	int		fd;
+	t_solong	vars;
 
-	col = 0;
-	fd = open(argv[1], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
-	string = malloc(sizeof(char));
-	while ((line = get_next_line(fd)))
-		string = ft_strjoin(string, line);
-	lines = countlines(string);
-	col = countcol(string);
-	if (!validchar(string))
+	// vars.steps = 0;
+	// closewin(vars);
+
+	vars.fd = open(argv[1], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+	vars.string = malloc(sizeof(char));
+	while ((vars.line = get_next_line(vars.fd)))
+		vars.string = ft_strjoin(vars.string, vars.line);
+	vars.lines = countlines(vars.string);
+	vars.col = countcol(vars.string);
+	if (!validchar(vars.string))
 		return (0);
-	array = ft_split(string, '\n');
-	if (!rectangle(array))
+	vars.array = ft_split(vars.string, '\n');
+	if (!rectangle(vars.array))
 		return (0);
-	if (!walledin(array, lines, col))
+	if (!walledin(vars.array, vars.lines, vars.col))
 		return (0);
-	createwindow(array, lines, col);
-	printf("%i\n%i", lines, col);
-	free(string);
+	createwindow(&vars);
+	mlx_key_hook(vars.win->mlx_win, closewin, &vars);
+	free(vars.string);
 	return (0);
 }
