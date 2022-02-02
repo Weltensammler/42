@@ -1,4 +1,4 @@
-SOURCE = backup.c check_map.c
+SOURCE = so_long.c check_map.c solong_utils.c load_images.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

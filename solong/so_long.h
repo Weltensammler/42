@@ -9,44 +9,39 @@
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
 
-typedef struct s_windat
-{
-	void	*mlx;
-	void	*mlx_win;
-	void	*img_wall;
-	void	*img_char;
-	void	*img_item;
-	void	*img_floor;
-	void	*img_exit;
-	char	*relative_path_wall;
-	char	*relative_path_char;
-	char	*relative_path_item;
-	char	*relative_path_floor;
-	char	*relative_path_exit;
-	int		img_width;
-	int		img_height;
-	int		y;
-	int		x;
-	int		c;
-	int		l;
-	int		i;
-	int		j;
-}	t_windat;
-
 typedef struct s_solong
 {
-	char		*line;
-	char		*string;
-	char		**array;
-	int			lines;
-	int			col;
-	int			fd;
+	char	*line;
+	char	*string;
+	char	**array;
+	int		lines;
+	int		col;
+	int		fd;
+	int		x;
+	int		y;
+	void	*mlx;
+	void	*win;
+	void	*wa;
+	void	*pl;
+	void	*it;
+	void	*fl;
+	void	*ex;
 }	t_solong;
+
 //vars.img.file = lökdjföalskjg
-int	countlines(char *string);
-int	countcol(char *string);
-int	validchar(char *string);
-int	rectangle(char **array);
-int	walledin(char **array, int lines, int col);
+
+int		countlines(char *string);
+int		countcol(char *string);
+int		validchar(char *string);
+int		rectangle(char **array);
+int		walledin(char **array, int lines, int col);
+int		get_map(t_solong *vars);
+void	draw_map(t_solong *vars);
+void	load_images(t_solong *vars);
+void	load_img_wall(t_solong *vars);
+void	load_img_player(t_solong *vars);
+void	load_img_item(t_solong *vars);
+void	load_img_floor(t_solong *vars);
+void	load_img_exit(t_solong *vars);
 
 #endif

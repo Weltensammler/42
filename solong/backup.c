@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:31:28 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/01 17:32:19 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:53:22 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	createwindow(char **array, int lines, int col)
 	char	*exit = "./images/exit.xpm";
 	int		img_width;
 	int		img_height;
-	int		y;
-	int		x;
 	int		c;
 	int		l;
 	int		i;
@@ -55,8 +53,6 @@ void	createwindow(char **array, int lines, int col)
 
 	c = 100 * col;
 	l = 100 * lines;
-	x = 0;
-	y = 0;
 	i = 0;
 	j = 0;
 	mlx = mlx_init();
@@ -71,20 +67,17 @@ void	createwindow(char **array, int lines, int col)
 		while (array[i][j])
 		{
 			if (array[i][j] == '1')
-				mlx_put_image_to_window(mlx, mlx_win, wall, x, y);
+				mlx_put_image_to_window(mlx, mlx_win, wall, j * 100, i *100);
 			if (array[i][j] == '0')
-				mlx_put_image_to_window(mlx, mlx_win, floor, x, y);
+				mlx_put_image_to_window(mlx, mlx_win, floor, j * 100, i *100);
 			if (array[i][j] == 'P')
-				mlx_put_image_to_window(mlx, mlx_win, player, x, y);
+				mlx_put_image_to_window(mlx, mlx_win, player, j * 100, i *100);
 			if (array[i][j] == 'C')
-				mlx_put_image_to_window(mlx, mlx_win, item, x, y);
+				mlx_put_image_to_window(mlx, mlx_win, item, j * 100, i *100);
 			if (array[i][j] == 'E')
-				mlx_put_image_to_window(mlx, mlx_win, exit, x, y);
+				mlx_put_image_to_window(mlx, mlx_win, exit, j * 100, i *100);
 			j++;
-			x += 100;
 		}
-		y += 100;
-		x = 0;
 		j = 0;
 		i++;
 	}
