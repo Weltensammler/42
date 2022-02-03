@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/02 21:28:39 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:15:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,44 @@ int	get_map(t_solong *vars)
 	return (0);
 }
 
-int	*find_playerx(char **array)
+void	find_player(t_solong *vars)
 {
 	int	x;
 	int	y;
-	int	position[2];
 
 	x = 0;
 	y = 0;
-	while (array[y][x])
+	vars->ccount = 0;
+	while (vars->array[y])
 	{
-		while (array[y][x])
+		while (vars->array[y][x])
 		{
-			if (array[y][x] == 'P')
+			if (vars->array[y][x] == 'P')
 			{
-				position[0] = y;
-				position[1] = x;
-				return (position);
+				vars->pl_y = y;
+				vars->pl_x = x;
 			}
+			if (vars->array[y][x] == 'C')
+				vars->ccount++;
 			x++;
 		}
+		x = 0;
 		y++;
 	}
-	return (0);
 }
 
 void	load_images(t_solong *vars)
 {
-	load_img_wall(&*vars);
-	load_img_player(&*vars);
-	load_img_item(&*vars);
-	load_img_floor(&*vars);
-	load_img_exit(&*vars);
+	load_img_wall(vars);
+	load_img_player(vars);
+	load_img_item(vars);
+	load_img_floor(vars);
+	load_img_exit(vars);
+}
+
+void	imgtowin(t_solong *vars, void *img, int i, int j)
+{
+	mlx_put_image_to_window(vars->mlx, vars->win, img, j * 100, i * 100);
 }
 
 void	draw_map(t_solong *vars)
@@ -80,15 +86,15 @@ void	draw_map(t_solong *vars)
 		while (vars->array[i][j])
 		{
 			if (vars->array[i][j] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wa, j * 100, i * 100);
+				imgtowin(vars, vars->wa, i, j);
 			if (vars->array[i][j] == '0')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->fl, j * 100, i * 100);
+				imgtowin(vars, vars->fl, i, j);
 			if (vars->array[i][j] == 'P')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->pl, j * 100, i * 100);
+				imgtowin(vars, vars->pl, i, j);
 			if (vars->array[i][j] == 'C')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->it, j * 100, i * 100);
+				imgtowin(vars, vars->it, i, j);
 			if (vars->array[i][j] == 'E')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->ex, j * 100, i * 100);
+				imgtowin(vars, vars->ex, i, j);
 			j++;
 		}
 		j = 0;
