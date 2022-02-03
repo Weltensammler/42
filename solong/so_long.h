@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/03 18:33:55 by bschende          #+#    #+#             */
+/*   Updated: 2022/02/03 21:07:53 by bschende         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -32,16 +44,19 @@ typedef struct s_solong
 	void	*ex;
 }	t_solong;
 
-//vars.img.file = lökdjföalskjg
-
+void	ber_check(char *arg);
 int		countlines(char *string);
 int		countcol(char *string);
-int		validchar(char *string);
-int		rectangle(char **array);
+void	validchar(char *string);
+void	rectangle(char **array);
 int		walledin(char **array, int lines, int col);
+void	check_min_objects(char *string);
+void	check_min_it(char *string);
+void	check_min_pl(char *string);
+void	check_min_ex(char *string);
 void	find_player(t_solong *vars);
-int		get_map(t_solong *vars);
-void	draw_map(t_solong *vars);
+void	get_map(t_solong *vars);
+int		draw_map(t_solong *vars);
 void	load_images(t_solong *vars);
 void	load_img_wall(t_solong *vars);
 void	load_img_player(t_solong *vars);
@@ -49,6 +64,12 @@ void	load_img_item(t_solong *vars);
 void	load_img_floor(t_solong *vars);
 void	load_img_exit(t_solong *vars);
 void	endgame(t_solong *vars);
+int		goodbye(char *error_message);
 void	imagefail(void);
+void	wrong_format(void);
+void	move_right(t_solong *vars);
+void	move_up(t_solong *vars);
+void	move_down(t_solong *vars);
+void	move_left(t_solong *vars);
 
 #endif

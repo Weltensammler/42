@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:28:30 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/01 16:17:53 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/03 20:11:57 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	countcol(char *string)
 	return (i);
 }
 
-int	validchar(char *string)
+void	validchar(char *string)
 {
 	int	i;
 
@@ -52,14 +52,13 @@ int	validchar(char *string)
 		if (!ft_strchr("01CEP\n", string[i]))
 		{
 			printf("Map contains non valid characters! (01CEP)\n");
-			return (0);
+			exit(0);
 		}
 		i++;
 	}
-	return (1);
 }
 
-int	rectangle(char **array)
+void	rectangle(char **array)
 {
 	int	i;
 
@@ -69,11 +68,10 @@ int	rectangle(char **array)
 		if (ft_strlen(array[0]) != ft_strlen(array[i]))
 		{
 			printf("ERROR, Map not rectangular!\n");
-			return (0);
+			exit(0);
 		}
 		i++;
 	}
-	return (1);
 }
 
 int	walledin(char **array, int lines, int col)

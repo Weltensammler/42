@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:29:38 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 16:41:59 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/03 21:01:57 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,16 @@ void	endgame(t_solong *vars)
 void	imagefail(void)
 {
 	printf("Failed to load image!");
+	exit(0);
+}
+
+void	wrong_format(void)
+{
+	printf("Wrong Map format! (.ber)");
+	exit(0);
+}
+
+int	goodbye(char *error_message)
+{
 	exit(0);
 }

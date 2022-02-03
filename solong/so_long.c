@@ -6,13 +6,13 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:34:43 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 17:09:04 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/03 21:10:18 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	closewin(int keycode, t_solong *vars)
+int	player_input(int keycode, t_solong *vars)
 {
 	if (keycode == 65307)
 	{
@@ -20,89 +20,13 @@ int	closewin(int keycode, t_solong *vars)
 		exit(0);
 	}
 	if (keycode == 100)
-	{
-		if (vars->array[vars->pl_y][vars->pl_x + 1] != '1')
-		{
-			if (vars->array[vars->pl_y][vars->pl_x + 1] == 'C')
-				vars->ccount = vars->ccount - 1;
-			if (vars->array[vars->pl_y][vars->pl_x + 1] == 'E' && vars->ccount == 0)
-			{
-				vars->player_moves++;
-				endgame(vars);
-			}
-			if (vars->array[vars->pl_y][vars->pl_x + 1] != 'E')
-			{
-				vars->player_moves++;
-				vars->array[vars->pl_y][vars->pl_x] = '0';
-				vars->pl_x = vars->pl_x + 1;
-				vars->array[vars->pl_y][vars->pl_x] = 'P';
-				draw_map(vars);
-			}
-		}
-	}
+		move_right(vars);
 	if (keycode == 119)
-	{
-		if (vars->array[vars->pl_y - 1][vars->pl_x] != '1')
-		{
-			if (vars->array[vars->pl_y - 1][vars->pl_x] == 'C')
-				vars->ccount = vars->ccount - 1;
-			if (vars->array[vars->pl_y - 1][vars->pl_x] == 'E' && vars->ccount == 0)
-			{
-				vars->player_moves++;
-				endgame(vars);
-			}
-			if (vars->array[vars->pl_y - 1][vars->pl_x] != 'E')
-			{
-				vars->player_moves++;
-				vars->array[vars->pl_y][vars->pl_x] = '0';
-				vars->pl_y = vars->pl_y - 1;
-				vars->array[vars->pl_y][vars->pl_x] = 'P';
-				draw_map(vars);
-			}
-		}
-	}
+		move_up(vars);
 	if (keycode == 115)
-	{
-		if (vars->array[vars->pl_y + 1][vars->pl_x] != '1')
-		{
-			if (vars->array[vars->pl_y + 1][vars->pl_x] == 'C')
-				vars->ccount = vars->ccount - 1;
-			if (vars->array[vars->pl_y + 1][vars->pl_x] == 'E' && vars->ccount == 0)
-			{
-				vars->player_moves++;
-				endgame(vars);
-			}
-			if (vars->array[vars->pl_y + 1][vars->pl_x] != 'E')
-			{
-				vars->player_moves++;
-				vars->array[vars->pl_y][vars->pl_x] = '0';
-				vars->pl_y = vars->pl_y + 1;
-				vars->array[vars->pl_y][vars->pl_x] = 'P';
-				draw_map(vars);
-			}
-		}
-	}
+		move_down(vars);
 	if (keycode == 97)
-	{
-		if (vars->array[vars->pl_y][vars->pl_x -1] != '1')
-		{
-			if (vars->array[vars->pl_y][vars->pl_x - 1] == 'C')
-				vars->ccount = vars->ccount - 1;
-			if (vars->array[vars->pl_y][vars->pl_x - 1] == 'E' && vars->ccount == 0)
-			{
-				vars->player_moves++;
-				endgame(vars);
-			}
-			if (vars->array[vars->pl_y][vars->pl_x - 1] != 'E')
-			{
-				vars->player_moves++;
-				vars->array[vars->pl_y][vars->pl_x] = '0';
-				vars->pl_x = vars->pl_x - 1;
-				vars->array[vars->pl_y][vars->pl_x] = 'P';
-				draw_map(vars);
-			}
-		}
-	}
+		move_left(vars);
 	printf("%i\n", vars->player_moves);
 	return (0);
 }
@@ -110,8 +34,11 @@ int	closewin(int keycode, t_solong *vars)
 int	main(int argc, char **argv)
 {
 	t_solong	vars;
+	int			i;
 
+	i = 0;
 	vars.player_moves = 0;
+	ber_check(argv[1]);
 	vars.fd = open(argv[1], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 	get_map(&vars);
 	vars.mlx = mlx_init();
@@ -119,7 +46,9 @@ int	main(int argc, char **argv)
 	find_player(&vars);
 	load_images(&vars);
 	draw_map(&vars);
-	mlx_key_hook(vars.win, closewin, &vars);
+	mlx_key_hook(vars.win, player_input, &vars);
+	mlx_hook(vars.win, 17, (1L << 17), goodbye, "solong");
+	mlx_hook(vars.win, 12, (1L << 15), draw_map, &vars);
 	mlx_loop(vars.mlx);
 	free(&vars);
 	return (0);

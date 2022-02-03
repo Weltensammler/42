@@ -6,32 +6,34 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 17:15:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/03 21:07:27 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_map(t_solong *vars)
+void	get_map(t_solong *vars)
 {
 	vars->string = malloc(sizeof(char));
-	while ((vars->line = get_next_line(vars->fd)))
-		vars->string = ft_strjoin(vars->string, vars->line);
+	while (vars->line)
+	{
+		vars->line = get_next_line(vars->fd);
+		if (vars->line)
+			vars->string = ft_strjoin(vars->string, vars->line);
+	}
 	vars->lines = countlines(vars->string);
 	vars->col = countcol(vars->string);
 	vars->x = vars->col * 100;
 	vars->y = vars->lines * 100;
-	if (!validchar(vars->string))
-		return (0);
+	validchar(vars->string);
 	vars->array = ft_split(vars->string, '\n');
-	if (!rectangle(vars->array))
-		return (0);
+	rectangle(vars->array);
 	if (!walledin(vars->array, vars->lines, vars->col))
 	{
 		printf("ERROR map not walled in!");
-		return (0);
+		exit(0);
 	}
-	return (0);
+	check_min_objects(vars->string);
 }
 
 void	find_player(t_solong *vars)
@@ -74,7 +76,7 @@ void	imgtowin(t_solong *vars, void *img, int i, int j)
 	mlx_put_image_to_window(vars->mlx, vars->win, img, j * 100, i * 100);
 }
 
-void	draw_map(t_solong *vars)
+int	draw_map(t_solong *vars)
 {
 	int		i;
 	int		j;
@@ -100,4 +102,5 @@ void	draw_map(t_solong *vars)
 		j = 0;
 		i++;
 	}
+	return (0);
 }
