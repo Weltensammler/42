@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:33:55 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 21:07:53 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:03:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ typedef struct s_solong
 	void	*ex;
 }	t_solong;
 
-void	ber_check(char *arg);
+void	ber_check(char *arg, t_solong *vars);
 int		countlines(char *string);
 int		countcol(char *string);
-void	validchar(char *string);
-void	rectangle(char **array);
+void	validchar(t_solong *vars);
+void	rectangle(t_solong *vars);
 int		walledin(char **array, int lines, int col);
-void	check_min_objects(char *string);
-void	check_min_it(char *string);
-void	check_min_pl(char *string);
-void	check_min_ex(char *string);
+void	check_min_objects(t_solong *vars);
+void	check_min_it(t_solong *vars);
+void	check_min_pl(t_solong *vars);
+void	check_min_ex(t_solong *vars);
 void	find_player(t_solong *vars);
 void	get_map(t_solong *vars);
 int		draw_map(t_solong *vars);
@@ -64,9 +64,10 @@ void	load_img_item(t_solong *vars);
 void	load_img_floor(t_solong *vars);
 void	load_img_exit(t_solong *vars);
 void	endgame(t_solong *vars);
-int		goodbye(char *error_message);
-void	imagefail(void);
-void	wrong_format(void);
+int		goodbye(t_solong *vars);
+void	freedom(t_solong *vars);
+void	imagefail(t_solong *vars);
+void	wrong_format(t_solong *vars);
 void	move_right(t_solong *vars);
 void	move_up(t_solong *vars);
 void	move_down(t_solong *vars);

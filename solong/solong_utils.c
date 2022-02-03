@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 21:07:27 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:06:15 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ void	get_map(t_solong *vars)
 	vars->col = countcol(vars->string);
 	vars->x = vars->col * 100;
 	vars->y = vars->lines * 100;
-	validchar(vars->string);
+	validchar(vars);
 	vars->array = ft_split(vars->string, '\n');
-	rectangle(vars->array);
+	rectangle(vars);
 	if (!walledin(vars->array, vars->lines, vars->col))
 	{
 		printf("ERROR map not walled in!");
+		freedom(vars);
 		exit(0);
 	}
-	check_min_objects(vars->string);
+	check_min_objects(vars);
 }
 
 void	find_player(t_solong *vars)
