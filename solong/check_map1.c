@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:28:30 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/03 23:47:48 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:52:50 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	validchar(t_solong *vars)
 		if (!ft_strchr("01CEP\n", vars->string[i]))
 		{
 			printf("Map contains non valid characters! (01CEP)\n");
-			freedom(vars);
+			free(vars->string);
+			free(vars->line);
 			exit(0);
 		}
 		i++;
@@ -69,7 +70,7 @@ void	rectangle(t_solong *vars)
 		if (ft_strlen(vars->array[0]) != ft_strlen(vars->array[i]))
 		{
 			printf("ERROR, Map not rectangular!\n");
-			freedom(vars);
+			freemap(vars);
 			exit(0);
 		}
 		i++;

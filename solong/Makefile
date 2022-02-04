@@ -1,5 +1,5 @@
 SOURCE = so_long.c check_map1.c check_map2.c solong_utils.c\
-load_images.c end_game.c player_move.c
+load_images.c end_game.c player_move.c imagefails.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

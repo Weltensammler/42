@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:33:55 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:03:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 01:14:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_solong
 	void	*ex;
 }	t_solong;
 
-void	ber_check(char *arg, t_solong *vars);
+void	ber_check(char *arg);
 int		countlines(char *string);
 int		countcol(char *string);
 void	validchar(t_solong *vars);
@@ -65,9 +65,14 @@ void	load_img_floor(t_solong *vars);
 void	load_img_exit(t_solong *vars);
 void	endgame(t_solong *vars);
 int		goodbye(t_solong *vars);
+void	freemap(t_solong *vars);
+void	imagefail1(t_solong *vars);
+void	imagefail2(t_solong *vars);
+void	imagefail3(t_solong *vars);
+void	imagefail4(t_solong *vars);
+void	imagefail5(t_solong *vars);
 void	freedom(t_solong *vars);
-void	imagefail(t_solong *vars);
-void	wrong_format(t_solong *vars);
+void	wrong_format(void);
 void	move_right(t_solong *vars);
 void	move_up(t_solong *vars);
 void	move_down(t_solong *vars);

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:34:43 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:01:11 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 01:15:02 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	vars.player_moves = 0;
-	ber_check(argv[1], &vars);
+	ber_check(argv[1]);
 	vars.fd = open(argv[1], O_RDONLY);
 	get_map(&vars);
 	close(vars.fd);

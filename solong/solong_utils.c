@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:06:15 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:51:44 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	get_map(t_solong *vars)
 {
 	vars->string = malloc(sizeof(char));
+	vars->line = malloc(sizeof(char));
 	while (vars->line)
 	{
 		vars->line = get_next_line(vars->fd);
@@ -31,7 +32,7 @@ void	get_map(t_solong *vars)
 	if (!walledin(vars->array, vars->lines, vars->col))
 	{
 		printf("ERROR map not walled in!");
-		freedom(vars);
+		freemap(vars);
 		exit(0);
 	}
 	check_min_objects(vars);
