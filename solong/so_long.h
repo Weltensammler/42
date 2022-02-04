@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:33:55 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 01:14:39 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:37:10 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct s_solong
 {
+	char	*path;
 	char	*line;
 	char	*string;
 	char	**array;
@@ -44,12 +45,12 @@ typedef struct s_solong
 	void	*ex;
 }	t_solong;
 
-void	ber_check(char *arg);
-int		countlines(char *string);
-int		countcol(char *string);
+void	ber_check(t_solong *vars);
+int		countlines(t_solong *vars);
+int		countcol(t_solong *vars);
 void	validchar(t_solong *vars);
 void	rectangle(t_solong *vars);
-int		walledin(char **array, int lines, int col);
+int		walledin(t_solong *vars);
 void	check_min_objects(t_solong *vars);
 void	check_min_it(t_solong *vars);
 void	check_min_pl(t_solong *vars);
@@ -72,7 +73,7 @@ void	imagefail3(t_solong *vars);
 void	imagefail4(t_solong *vars);
 void	imagefail5(t_solong *vars);
 void	freedom(t_solong *vars);
-void	wrong_format(void);
+void	wrong_format(t_solong *vars);
 void	move_right(t_solong *vars);
 void	move_up(t_solong *vars);
 void	move_down(t_solong *vars);

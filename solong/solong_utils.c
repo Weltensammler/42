@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:51:44 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:27:57 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	get_map(t_solong *vars)
 		if (vars->line)
 			vars->string = ft_strjoin(vars->string, vars->line);
 	}
-	vars->lines = countlines(vars->string);
-	vars->col = countcol(vars->string);
+	vars->lines = countlines(vars);
+	vars->col = countcol(vars);
 	vars->x = vars->col * 100;
 	vars->y = vars->lines * 100;
 	validchar(vars);
 	vars->array = ft_split(vars->string, '\n');
 	rectangle(vars);
-	if (!walledin(vars->array, vars->lines, vars->col))
+	if (!walledin(vars))
 	{
 		printf("ERROR map not walled in!");
 		freemap(vars);

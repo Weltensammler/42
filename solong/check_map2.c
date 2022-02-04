@@ -6,27 +6,27 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:40:46 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:53:56 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:38:35 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ber_check(char *arg)
+void	ber_check(t_solong *vars)
 {
 	int		i;
 
 	i = 0;
-	while (arg[i])
+	while (vars->path[i])
 		i++;
-	if (arg[--i] != 'r')
-		wrong_format();
-	if (arg[--i] != 'e')
-		wrong_format();
-	if (arg[--i] != 'b')
-		wrong_format();
-	if (arg[--i] != '.')
-		wrong_format();
+	if (vars->path[--i] != 'r')
+		wrong_format(vars);
+	if (vars->path[--i] != 'e')
+		wrong_format(vars);
+	if (vars->path[--i] != 'b')
+		wrong_format(vars);
+	if (vars->path[--i] != '.')
+		wrong_format(vars);
 }
 
 void	check_min_objects(t_solong *vars)

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 12:26:35 by bschende          #+#    #+#             */
-/*   Updated: 2022/01/24 14:44:07 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:37:38 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_memcpy(new, s1, ft_strlen(s1));
 	ft_memcpy((new + ft_strlen(s1)), s2, ft_strlen(s2) + 1);
+	free(s2);
+	free(s1);
 	return (new);
 }

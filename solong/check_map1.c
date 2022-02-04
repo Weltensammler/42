@@ -6,36 +6,36 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:28:30 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 00:52:50 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:27:27 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	countlines(char *string)
+int	countlines(t_solong *vars)
 {
 	int	i;
 	int	lines;
 
 	i = 0;
 	lines = 1;
-	while (string[i])
+	while (vars->string[i])
 	{
-		if (string[i] == '\n')
+		if (vars->string[i] == '\n')
 			lines++;
 		i++;
 	}
 	return (lines);
 }
 
-int	countcol(char *string)
+int	countcol(t_solong *vars)
 {
 	int	i;
 
 	i = 0;
-	while (string[i])
+	while (vars->string[i])
 	{
-		if (string[i] == '\n')
+		if (vars->string[i] == '\n')
 			break ;
 		i++;
 	}
@@ -77,26 +77,26 @@ void	rectangle(t_solong *vars)
 	}
 }
 
-int	walledin(char **array, int lines, int col)
+int	walledin(t_solong *vars)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	j = 0;
-	while (array[i])
+	while (vars->array[i])
 	{
-		while (array[0][j])
+		while (vars->array[0][j])
 		{
-			if (!ft_strchr("1\n", array[0][j]))
+			if (!ft_strchr("1\n", vars->array[0][j]))
 				return (0);
-			if (!ft_strchr("1\n", array[lines - 1][j]))
+			if (!ft_strchr("1\n", vars->array[vars->lines - 1][j]))
 				return (0);
 			j++;
 		}
-		while (i != lines)
+		while (i != vars->lines)
 		{
-			if (array[i][0] != '1' || array[i][col - 1] != '1')
+			if (vars->array[i][0] != '1' || vars->array[i][vars->col - 1] != '1')
 				return (0);
 			i++;
 		}

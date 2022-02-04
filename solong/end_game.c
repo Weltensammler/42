@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 16:29:38 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 01:15:25 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:41:59 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	endgame(t_solong *vars)
 {
 	printf("You escaped :) you needed %i moves for this!", vars->player_moves);
-	//freedom(vars);
+	freedom(vars);
 	exit(0);
 }
 
-void	wrong_format(void)
+void	wrong_format(t_solong *vars)
 {
 	printf("Wrong Map format! (.ber)");
+	free(vars->path);
 	exit(0);
 }
 
@@ -43,10 +44,16 @@ void	freedom(t_solong *vars)
 
 void	freemap(t_solong *vars)
 {
-	if (vars->line)
-		free(vars->line);
-	if (vars->string)
-		free(vars->string);
-	if (vars->array)
-		free(vars->array);
+	int	i;
+
+	i = 0;
+	free(vars->line);
+	free(vars->path);
+	free(vars->string);
+	free(vars->array);
+	while (vars->array[i])
+	{
+		free(vars->array[i]);
+		i++;
+	}
 }

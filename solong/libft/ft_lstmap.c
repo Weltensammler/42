@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 16:57:46 by bschende          #+#    #+#             */
-/*   Updated: 2021/09/14 17:28:16 by bschende         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:30:00 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 				free(first);
 				first = new;
 			}
-			lst = NULL;
 			return (NULL);
 		}
 		ft_lstadd_back(&first, new);

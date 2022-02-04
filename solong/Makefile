@@ -13,15 +13,21 @@ all: $(NAME)
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
+	make -C ./mlx
 	make bonus -C ./libft
 	make -C ./get_next_line
 	$(CC) $(SOURCE) ./libft/libft.a ./get_next_line/get_next_line.a\
 	 ./mlx/libmlx.a -L /usr/X11/lib -lX11 -lXext -o $(NAME)
 
 clean:
+	make clean -C ./mlx
+	make clean -C ./libft
+	make clean -C ./get_next_line
 	rm -rf $(OBJECTS)
 
 fclean: clean
+	make fclean -C ./libft
+	make fclean -C ./get_next_line
 	rm -rf $(NAME)
 
 re: fclean all
