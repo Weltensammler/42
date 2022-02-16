@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:28:30 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 17:27:27 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:24:07 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	countlines(t_solong *vars)
 	lines = 1;
 	while (vars->string[i])
 	{
-		if (vars->string[i] == '\n')
+		if (vars->string[i] == '\n' && vars->string[i + 1])
 			lines++;
 		i++;
 	}
@@ -81,9 +81,11 @@ int	walledin(t_solong *vars)
 {
 	int	i;
 	int	j;
+	int	c;
 
-	i = 1;
+	i = 0;
 	j = 0;
+	c = vars->col;
 	while (vars->array[i])
 	{
 		while (vars->array[0][j])
@@ -94,11 +96,10 @@ int	walledin(t_solong *vars)
 				return (0);
 			j++;
 		}
-		while (i != vars->lines)
+		while (++i != vars->lines)
 		{
-			if (vars->array[i][0] != '1' || vars->array[i][vars->col - 1] != '1')
+			if (vars->array[i][0] != '1' || vars->array[i][c - 1] != '1')
 				return (0);
-			i++;
 		}
 		i++;
 	}

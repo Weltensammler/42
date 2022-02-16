@@ -6,11 +6,12 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 15:44:07 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 17:46:37 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:47:32 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	ft_count(char *s, char c)
 {

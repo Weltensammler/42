@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/04 17:27:57 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:18:16 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	get_map(t_solong *vars)
 {
 	vars->string = malloc(sizeof(char));
-	vars->line = malloc(sizeof(char));
 	while (vars->line)
 	{
 		vars->line = get_next_line(vars->fd);
@@ -27,6 +26,7 @@ void	get_map(t_solong *vars)
 	vars->x = vars->col * 100;
 	vars->y = vars->lines * 100;
 	validchar(vars);
+	check_min_objects(vars);
 	vars->array = ft_split(vars->string, '\n');
 	rectangle(vars);
 	if (!walledin(vars))
@@ -35,7 +35,6 @@ void	get_map(t_solong *vars)
 		freemap(vars);
 		exit(0);
 	}
-	check_min_objects(vars);
 }
 
 void	find_player(t_solong *vars)
