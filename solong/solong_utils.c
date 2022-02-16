@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/16 14:18:16 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:05:32 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	get_map(t_solong *vars)
 	vars->x = vars->col * 100;
 	vars->y = vars->lines * 100;
 	validchar(vars);
-	check_min_objects(vars);
 	vars->array = ft_split(vars->string, '\n');
+	check_min_objects(vars);
 	rectangle(vars);
 	if (!walledin(vars))
 	{
