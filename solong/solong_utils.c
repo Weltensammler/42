@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:37:01 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/16 16:05:32 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:21:27 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	get_map(t_solong *vars)
 		if (vars->line)
 			vars->string = ft_strjoin(vars->string, vars->line);
 	}
+	mapformat(vars);
 	vars->lines = countlines(vars);
 	vars->col = countcol(vars);
 	vars->x = vars->col * 100;

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:33:55 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/16 12:32:29 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:21:50 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		countcol(t_solong *vars);
 void	validchar(t_solong *vars);
 void	rectangle(t_solong *vars);
 int		walledin(t_solong *vars);
+void	mapformat(t_solong *vars);
 void	check_min_objects(t_solong *vars);
 void	check_min_it(t_solong *vars);
 void	check_min_pl(t_solong *vars);
