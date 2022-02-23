@@ -10,7 +10,7 @@ NAME = so_long
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -fsanitize=address -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
 	make -C ./mlx

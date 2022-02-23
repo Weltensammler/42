@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:34:43 by bschende          #+#    #+#             */
-/*   Updated: 2022/02/16 13:54:16 by bschende         ###   ########.fr       */
+/*   Updated: 2022/02/19 18:14:55 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 	int			i;
 
 	i = 0;
+	if (argc < 2)
+		
 	vars.path = argv[1];
 	vars.player_moves = 0;
 	ber_check(&vars);
