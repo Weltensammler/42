@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:03:18 by ben               #+#    #+#             */
-/*   Updated: 2022/03/12 13:46:24 by ben              ###   ########.fr       */
+/*   Updated: 2022/03/17 12:50:49 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,63 @@ void	swapa(int *array)
 	write(1, "sa\n", 3);
 }
 
-void	pushb(int *arraya, int *arrayb, int size)
+void	pusha(int *arraya, int *arrayb, int *sizea, int *sizeb)
+{
+	int	temp;
+	int	i;
+
+	i = 0;
+	ft_printf("\n		%i	%i\n",*sizea, *sizeb);
+	temp = arrayb[0];
+	if (*sizeb > 0)
+	{
+		while (i < (*sizeb - 1))
+		{
+			arrayb[i] = arrayb[i + 1];
+			i++;
+		}
+		arrayb[*sizeb - 1] = 0;
+		i = (*sizeb + *sizea);
+		while (i >= 2)
+		{
+			arraya[i - 1] = arraya[i - 2];
+			i--;
+		}
+		arraya[0] = temp;
+		write(1, "pa\n", 3);
+		*sizeb = *sizeb - 1;
+		*sizea = *sizea + 1;
+	}
+}
+
+void	rotatea(int *arraya, int *sizea)
 {
 	int	temp;
 	int	i;
 
 	i = 0;
 	temp = arraya[0];
-	while (i < size)
+	while (i < (*sizea - 1))
 	{
 		arraya[i] = arraya[i + 1];
 		i++;
 	}
-	arraya[size] = 0;
-	while (size >= 0)
+	arraya[*sizea - 1] = temp;
+	write(1, "ra\n", 3);
+}
+
+void	rrotatea(int *arraya, int *sizea)
+{
+	int	temp;
+	int	i;
+
+	i = (*sizea - 1);
+	temp = arraya[i];
+	while (i > 2)
 	{
-		arrayb[size] = arrayb[size - 1];
-		size--;
+		arraya[*sizea - 1] = arraya[*sizea - 2];
+		i++;
 	}
-	arrayb[0] = temp;
-	write(1, "pb\n", 3);
+	arraya[*sizea - 1] = temp;
+	write(1, "rra\n", 3);
 }

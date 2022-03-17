@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/03/12 13:43:35 by ben              ###   ########.fr       */
+/*   Updated: 2022/03/17 12:46:47 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,68 +30,95 @@ int	main(int argc, char **argv)
 		i++;
 		j++;
 	}
+	operating(arraya, arrayb, (argc - 1));
+}
 //from here on push everything to other function, only include free at the end*/
-	j = 0;
-	bubblesort(arrayb, (argc - 1));
-	while (j < argc - 1)
+
+void	operating(int *arraya, int *arrayb, int size)
+{
+	int	i;
+	int	*sizea;
+	int	*sizeb;
+
+	i = 0;
+	sizea = malloc(sizeof(int));
+	sizeb = malloc(sizeof(int));
+	*sizea = size;
+	*sizeb = 0;
+	bubblesort(arrayb, size);
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arrayb[j], arraya[j]);
-		j++;
+		ft_printf("%i	%i\n", arrayb[i], arraya[i]);
+		i++;
 	}
-	indexing(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	indexing(arraya, arrayb, size);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+		i++;
 	}
-	//cleararray(arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	cleararray(arrayb, size);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+		i++;
 	}
 	swapa(arraya);
-	j = 0;
-	while (j < argc - 1)
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+		i++;
 	}
-	pushb(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	pushb(arraya, arrayb, sizea, sizeb);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
 	}
-	pushb(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	pushb(arraya, arrayb, sizea, sizeb);
+	ft_printf("\n%i	%i\n",*sizea, *sizeb);
+	pushb(arraya, arrayb, sizea, sizeb);
+	pushb(arraya, arrayb, sizea, sizeb);
+	pushb(arraya, arrayb, sizea, sizeb);
+	pushb(arraya, arrayb, sizea, sizeb);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
 	}
-	pushb(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	rotateb(arrayb, sizeb);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
 	}
-	pushb(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	pusha(arraya, arrayb, sizea, sizeb);
+	pusha(arraya, arrayb, sizea, sizeb);
+	pusha(arraya, arrayb, sizea, sizeb);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
 	}
-	pushb(arraya, arrayb, (argc - 1));
-	j = 0;
-	while (j < argc - 1)
+	rotatea(arraya, sizea);
+	i = 0;
+	while (i < size)
 	{
-		ft_printf("%i	%i\n", arraya[j], arrayb[j]);
-		j++;
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
+	}
+	rrotatea(arraya, sizea);
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
 	}
 }
