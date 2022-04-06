@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:03:18 by ben               #+#    #+#             */
-/*   Updated: 2022/03/17 12:50:49 by ben              ###   ########.fr       */
+/*   Updated: 2022/03/17 13:05:15 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ void	rrotatea(int *arraya, int *sizea)
 
 	i = (*sizea - 1);
 	temp = arraya[i];
-	while (i > 2)
+	while (i > 0)
 	{
-		arraya[*sizea - 1] = arraya[*sizea - 2];
-		i++;
+		arraya[i] = arraya[i - 1];
+		i--;
 	}
-	arraya[*sizea - 1] = temp;
-	write(1, "rra\n", 3);
+	arraya[0] = temp;
+	write(1, "rra\n", 4);
 }

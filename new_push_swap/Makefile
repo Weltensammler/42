@@ -1,4 +1,4 @@
-SOURCE = push_swap.c ps_utils.c operationsa.c operationsb.c
+SOURCE = push_swap.c ps_utils.c operationsa.c operationsb.c operationsab.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/03/17 12:46:47 by ben              ###   ########.fr       */
+/*   Updated: 2022/03/17 13:57:52 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,28 @@ void	operating(int *arraya, int *arrayb, int size)
 		i++;
 	}
 	rrotatea(arraya, sizea);
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
+	}
+	pusha(arraya, arrayb, sizea, sizeb);
+	rrotateb(arrayb, sizeb);
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
+	}
+	swapab(arraya, arrayb);
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+		i++;
+	}
+	rotateab(arraya, sizea, arrayb, sizeb);
 	i = 0;
 	while (i < size)
 	{

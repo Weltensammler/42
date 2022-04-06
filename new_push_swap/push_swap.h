@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/03/17 12:45:09 by ben              ###   ########.fr       */
+/*   Updated: 2022/03/17 13:56:52 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ void	pusha(int *arraya, int *arrayb, int *sizea, int *sizeb);
 void	rotatea(int *arraya, int *sizea);
 void	rotateb(int *arrayb, int *sizeb);
 void	rrotatea(int *arraya, int *sizea);
+void	rrotateb(int *arrayb, int *sizeb);
+void	swapab(int *arraya, int *arrayb);
+void	rotateab(int *arraya, int *sizea, int *arrayb, int *sizeb);
 
 #endif
