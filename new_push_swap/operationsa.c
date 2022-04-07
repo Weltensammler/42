@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   operationsa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:03:18 by ben               #+#    #+#             */
-/*   Updated: 2022/03/17 13:05:15 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/06 12:14:06 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swapa(int *array)
+void	swapa(int *array, int *sizea)
 {
 	int	temp;
 
-	temp = array[0];
-	array[0] = array[1];
-	array[1] = temp;
-	write(1, "sa\n", 3);
+	if (*sizea > 1)
+	{
+		temp = array[0];
+		array[0] = array[1];
+		array[1] = temp;
+		write(1, "sa\n", 3);
+	}
 }
 
 void	pusha(int *arraya, int *arrayb, int *sizea, int *sizeb)

@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   operationsb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:10:43 by ben               #+#    #+#             */
-/*   Updated: 2022/03/17 13:43:24 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/06 12:14:23 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swapb(int *array)
+void	swapb(int *array, int *sizeb)
 {
 	int	temp;
 
-	temp = array[0];
-	array[0] = array[1];
-	array[1] = temp;
-	write(1, "sb\n", 3);
+	if (*sizeb > 1)
+	{
+		temp = array[0];
+		array[0] = array[1];
+		array[1] = temp;
+		write(1, "sb\n", 3);
+	}
 }
 
 void	pushb(int *arraya, int *arrayb, int *sizea, int *sizeb)

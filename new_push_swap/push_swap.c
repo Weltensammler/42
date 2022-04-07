@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/03/17 13:57:52 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/06 16:42:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 		j++;
 	}
 	operating(arraya, arrayb, (argc - 1));
+	return (0);
 }
 //from here on push everything to other function, only include free at the end*/
 
@@ -46,18 +47,18 @@ void	operating(int *arraya, int *arrayb, int size)
 	*sizea = size;
 	*sizeb = 0;
 	bubblesort(arrayb, size);
-	while (i < size)
-	{
-		ft_printf("%i	%i\n", arrayb[i], arraya[i]);
-		i++;
-	}
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i\n", arrayb[i], arraya[i]);
+	// 	i++;
+	// }
 	indexing(arraya, arrayb, size);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
-		i++;
-	}
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+	// 	i++;
+	// }
 	cleararray(arrayb, size);
 	i = 0;
 	while (i < size)
@@ -65,82 +66,85 @@ void	operating(int *arraya, int *arrayb, int size)
 		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
 		i++;
 	}
-	swapa(arraya);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
-		i++;
-	}
-	pushb(arraya, arrayb, sizea, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	pushb(arraya, arrayb, sizea, sizeb);
-	ft_printf("\n%i	%i\n",*sizea, *sizeb);
-	pushb(arraya, arrayb, sizea, sizeb);
-	pushb(arraya, arrayb, sizea, sizeb);
-	pushb(arraya, arrayb, sizea, sizeb);
-	pushb(arraya, arrayb, sizea, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	rotateb(arrayb, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	pusha(arraya, arrayb, sizea, sizeb);
-	pusha(arraya, arrayb, sizea, sizeb);
-	pusha(arraya, arrayb, sizea, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	rotatea(arraya, sizea);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	rrotatea(arraya, sizea);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	pusha(arraya, arrayb, sizea, sizeb);
-	rrotateb(arrayb, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	swapab(arraya, arrayb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
-	rotateab(arraya, sizea, arrayb, sizeb);
-	i = 0;
-	while (i < size)
-	{
-		ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-		i++;
-	}
+	i = chunks(sizea);
+	ft_printf("%i\n", i);
+	// swapa(arraya, sizea);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+	// 	i++;
+	// }
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// ft_printf("\n%i	%i\n",*sizea, *sizeb);
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// rotateb(arrayb, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// pusha(arraya, arrayb, sizea, sizeb);
+	// pusha(arraya, arrayb, sizea, sizeb);
+	// pusha(arraya, arrayb, sizea, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// rotatea(arraya, sizea);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// pusha(arraya, arrayb, sizea, sizeb);
+	// rrotatea(arraya, sizea);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// rrotateb(arrayb, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// pushb(arraya, arrayb, sizea, sizeb);
+	// swapab(arraya, arrayb, sizea, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
+	// rotateab(arraya, sizea, arrayb, sizeb);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
+	// 	i++;
+	// }
 }

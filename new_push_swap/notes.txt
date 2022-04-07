@@ -1,0 +1,1 @@
+Optimising: if down to 3 elements maybe not push 1 element to stackb 
