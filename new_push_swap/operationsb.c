@@ -6,82 +6,82 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:10:43 by ben               #+#    #+#             */
-/*   Updated: 2022/04/06 12:14:23 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:18:23 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swapb(int *array, int *sizeb)
+void	swapb(t_pushswap *vars)
 {
 	int	temp;
 
-	if (*sizeb > 1)
+	if (vars->sizeb > 1)
 	{
-		temp = array[0];
-		array[0] = array[1];
-		array[1] = temp;
+		temp = vars->arrayb[0];
+		vars->arrayb[0] = vars->arrayb[1];
+		vars->arrayb[1] = temp;
 		write(1, "sb\n", 3);
 	}
 }
 
-void	pushb(int *arraya, int *arrayb, int *sizea, int *sizeb)
+void	pushb(t_pushswap *vars)
 {
 	int	temp;
 	int	i;
 
 	i = 0;
-	ft_printf("\n		%i	%i\n",*sizea, *sizeb);
-	temp = arraya[0];
-	if (*sizea > 0)
+	ft_printf("\n		%i	%i\n",vars->sizea, vars->sizeb);
+	temp = vars->arraya[0];
+	if (vars->sizea > 0)
 	{
-		while (i < (*sizea - 1))
+		while (i < (vars->sizea - 1))
 		{
-			arraya[i] = arraya[i + 1];
+			vars->arraya[i] = vars->arraya[i + 1];
 			i++;
 		}
-		arraya[*sizea - 1] = 0;
-		i = (*sizeb + *sizea);
+		vars->arraya[vars->sizea - 1] = 0;
+		i = (vars->sizeb + vars->sizea);
 		while (i >= 2)
 		{
-			arrayb[i - 1] = arrayb[i - 2];
+			vars->arrayb[i - 1] = vars->arrayb[i - 2];
 			i--;
 		}
-		arrayb[0] = temp;
+		vars->arrayb[0] = temp;
 		write(1, "pb\n", 3);
-		*sizeb = *sizeb + 1;
-		*sizea = *sizea - 1;
+		vars->sizeb = vars->sizeb + 1;
+		vars->sizea = vars->sizea - 1;
 	}
 }
 
-void	rotateb(int *arrayb, int *sizeb)
+void	rotateb(t_pushswap *vars)
 {
 	int	temp;
 	int	i;
 
 	i = 0;
-	temp = arrayb[0];
-	while (i < (*sizeb - 1))
+	temp = vars->arrayb[0];
+	while (i < (vars->sizeb - 1))
 	{
-		arrayb[i] = arrayb[i + 1];
+		vars->arrayb[i] = vars->arrayb[i + 1];
 		i++;
 	}
-	arrayb[*sizeb - 1] = temp;
+	vars->arrayb[vars->sizeb - 1] = temp;
 	write(1, "rb\n", 3);
 }
 
-void	rrotateb(int *arrayb, int *sizeb)
+void	rrotateb(t_pushswap *vars)
 {
 	int	temp;
 	int	i;
 
-	i = (*sizeb - 1);
-	temp = arrayb[i];
+	i = (vars->sizeb - 1);
+	temp = vars->arrayb[i];
 	while (i > 0)
 	{
-		arrayb[i] = arrayb[i - 1];
+		vars->arrayb[i] = vars->arrayb[i - 1];
 		i--;
 	}
-	arrayb[0] = temp;
+	vars->arrayb[0] = temp;
 	write(1, "rrb\n", 4);
 }

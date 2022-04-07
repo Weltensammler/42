@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/07 19:28:06 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:01:28 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,26 @@ typedef struct s_pushswap
 {
 	int	*arraya;
 	int	*arrayb;
+	int	size;
 	int	sizea;
 	int	sizeb;
 }	t_pushswap;
 
-void	operating(int *arraya, int *arrayb, int size);
-void	bubblesort(int *array, int size);
-void	indexing(int *arraya, int *arrayb, int size);
-void	cleararray(int *array, int size);
-void	swapa(int *array, int *sizea);
-void	swapb(int *array, int *sizeb);
-void	pushb(int *arraya, int *arrayb, int *sizea, int *sizeb);
-void	pusha(int *arraya, int *arrayb, int *sizea, int *sizeb);
-void	rotatea(int *arraya, int *sizea);
-void	rotateb(int *arrayb, int *sizeb);
-void	rrotatea(int *arraya, int *sizea);
-void	rrotateb(int *arrayb, int *sizeb);
-void	swapab(int *arraya, int *arrayb, int *sizea, int *sizeb);
-void	rotateab(int *arraya, int *sizea, int *arrayb, int *sizeb);
-void	rrotateab(int *arraya, int *sizea, int *arrayb, int *sizeb);
-int		chunks(int *sizea);
+void	operating(t_pushswap *vars);
+void	bubblesort(t_pushswap *vars);
+void	indexing(t_pushswap *vars);
+void	cleararray(t_pushswap *vars);
+void	swapa(t_pushswap *vars);
+void	swapb(t_pushswap *vars);
+void	pushb(t_pushswap *vars);
+void	pusha(t_pushswap *vars);
+void	rotatea(t_pushswap *vars);
+void	rotateb(t_pushswap *vars);
+void	rrotatea(t_pushswap *vars);
+void	rrotateb(t_pushswap *vars);
+void	swapab(t_pushswap *vars);
+void	rotateab(t_pushswap *vars);
+void	rrotateab(t_pushswap *vars);
+int		chunks(t_pushswap *vars);
 
 #endif

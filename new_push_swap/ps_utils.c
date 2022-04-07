@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 09:06:07 by ben               #+#    #+#             */
-/*   Updated: 2022/03/12 09:25:44 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/07 20:13:38 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bubblesort(int *array, int size)
+void	bubblesort(t_pushswap *vars)
 {
 	int	a;
 	int	b;
@@ -20,19 +20,19 @@ void	bubblesort(int *array, int size)
 
 	a = 0;
 	b = 1;
-	while (a < size)
-		ft_printf("%i\n", array[a++]);
+	while (a < vars->size)
+		ft_printf("%i\n", vars->arrayb[a++]);
 	a = 0;
 	while (b != 0)
 	{
 		b = 0;
-		while (a < size)
+		while (a < vars->size)
 		{
-			if (array[a] > array[a + 1] && a + 1 < size)
+			if (vars->arrayb[a] > vars->arrayb[a + 1] && a + 1 < vars->size)
 			{
-				temp = array[a + 1];
-				array[a + 1] = array[a];
-				array[a] = temp;
+				temp = vars->arrayb[a + 1];
+				vars->arrayb[a + 1] = vars->arrayb[a];
+				vars->arrayb[a] = temp;
 				b++;
 			}
 			a++;
@@ -41,18 +41,18 @@ void	bubblesort(int *array, int size)
 	}
 }
 
-void	indexing(int *arraya, int *arrayb, int size)
+void	indexing(t_pushswap *vars)
 {
 	int	a;
 	int	b;
 
 	a = 0;
 	b = 0;
-	while (a < size)
+	while (a < vars->size)
 	{
-		if (arraya[a] == arrayb[b])
+		if (vars->arraya[a] == vars->arrayb[b])
 		{
-			arraya[a] = b + 1;
+			vars->arraya[a] = b + 1;
 			a++;
 			b = 0;
 		}
@@ -61,11 +61,11 @@ void	indexing(int *arraya, int *arrayb, int size)
 	}
 }
 
-void	cleararray(int *array, int size)
+void	cleararray(t_pushswap *vars)
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
-		array[i++] = 0;
+	while (i < vars->size)
+		vars->arrayb[i++] = 0;
 }

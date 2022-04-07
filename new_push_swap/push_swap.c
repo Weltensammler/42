@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/06 16:42:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/07 21:15:10 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,86 +14,82 @@
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	j;
-	int	*arraya;
-	int	*arrayb;
+	int			i;
+	int			j;
+	t_pushswap	vars;
 
 	i = 1;
 	j = 0;
-	arraya = malloc((argc - 1) * sizeof(int));
-	arrayb = malloc((argc - 1) * sizeof(int));
+	vars.arraya = malloc((argc - 1) * sizeof(int));
+	vars.arrayb = malloc((argc - 1) * sizeof(int));
 	while (j < argc - 1)
 	{
-		arrayb[j] = ft_atoi(argv[i]);
-		arraya[j] = arrayb[j];
+		vars.arrayb[j] = ft_atoi(argv[i]);
+		vars.arraya[j] = vars.arrayb[j];
 		i++;
 		j++;
 	}
-	operating(arraya, arrayb, (argc - 1));
+	vars.size = (argc - 1);
+	operating(&vars);
 	return (0);
 }
 //from here on push everything to other function, only include free at the end*/
 
-void	operating(int *arraya, int *arrayb, int size)
+void	operating(t_pushswap *vars)
 {
 	int	i;
-	int	*sizea;
-	int	*sizeb;
 
 	i = 0;
-	sizea = malloc(sizeof(int));
-	sizeb = malloc(sizeof(int));
-	*sizea = size;
-	*sizeb = 0;
-	bubblesort(arrayb, size);
+	vars->sizea = vars->size;
+	vars->sizeb = 0;
+	bubblesort(vars);
 	// while (i < size)
 	// {
 	// 	ft_printf("%i	%i\n", arrayb[i], arraya[i]);
 	// 	i++;
 	// }
-	indexing(arraya, arrayb, size);
+	indexing(vars);
 	// i = 0;
 	// while (i < size)
 	// {
 	// 	ft_printf("%i	%i\n", arraya[i], arrayb[i]);
 	// 	i++;
 	// }
-	cleararray(arrayb, size);
+	cleararray(vars);
 	i = 0;
-	while (i < size)
+	while (i < vars->size)
 	{
-		ft_printf("%i	%i\n", arraya[i], arrayb[i]);
+		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
 		i++;
 	}
-	i = chunks(sizea);
+	i = chunks(vars);
 	ft_printf("%i\n", i);
-	// swapa(arraya, sizea);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i\n", arraya[i], arrayb[i]);
-	// 	i++;
-	// }
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-	// 	i++;
-	// }
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// ft_printf("\n%i	%i\n",*sizea, *sizeb);
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// pushb(arraya, arrayb, sizea, sizeb);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-	// 	i++;
-	// }
+	swapa(vars);
+	i = 0;
+	while (i < vars->size)
+	{
+		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
+		i++;
+	}
+	pushb(vars);
+	i = 0;
+	while (i < vars->size)
+	{
+		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
+		i++;
+	}
+	pushb(vars);
+	ft_printf("\n%i	%i\n",vars->sizea, vars->sizeb);
+	pushb(vars);
+	pushb(vars);
+	pushb(vars);
+	pushb(vars);
+	i = 0;
+	while (i < vars->size)
+	{
+		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
+		i++;
+	}
 	// rotateb(arrayb, sizeb);
 	// i = 0;
 	// while (i < size)
