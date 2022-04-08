@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/07 20:01:28 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:10:41 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ void	swapab(t_pushswap *vars);
 void	rotateab(t_pushswap *vars);
 void	rrotateab(t_pushswap *vars);
 int		chunks(t_pushswap *vars);
+int		checkifsorteda(t_pushswap *vars);
+void	sorting(t_pushswap *vars);
 
 #endif

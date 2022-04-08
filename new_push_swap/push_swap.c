@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/07 21:15:10 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:43:13 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,40 +63,15 @@ void	operating(t_pushswap *vars)
 		i++;
 	}
 	i = chunks(vars);
-	ft_printf("%i\n", i);
-	swapa(vars);
-	i = 0;
-	while (i < vars->size)
-	{
-		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
-		i++;
-	}
-	pushb(vars);
-	i = 0;
-	while (i < vars->size)
-	{
-		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
-		i++;
-	}
-	pushb(vars);
-	ft_printf("\n%i	%i\n",vars->sizea, vars->sizeb);
-	pushb(vars);
-	pushb(vars);
-	pushb(vars);
-	pushb(vars);
-	i = 0;
-	while (i < vars->size)
-	{
-		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
-		i++;
-	}
+	// ft_printf("%i\n", i);
+	sorting(vars);
 	// rotateb(arrayb, sizeb);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i	%i	%i\n", arraya[i], arrayb[i], *sizea, *sizeb);
-	// 	i++;
-	// }
+	i = 0;
+	while (i < vars->size)
+	{
+		ft_printf("%i	%i	%i	%i\n", vars->arraya[i], vars->arrayb[i], vars->sizea, vars->sizeb);
+		i++;
+	}
 	// pusha(arraya, arrayb, sizea, sizeb);
 	// pusha(arraya, arrayb, sizea, sizeb);
 	// pusha(arraya, arrayb, sizea, sizeb);

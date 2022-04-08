@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 09:06:07 by ben               #+#    #+#             */
-/*   Updated: 2022/04/07 20:13:38 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:19:23 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	bubblesort(t_pushswap *vars)
 
 	a = 0;
 	b = 1;
-	while (a < vars->size)
-		ft_printf("%i\n", vars->arrayb[a++]);
+	// while (a < vars->size)
+	// 	ft_printf("%i\n", vars->arrayb[a++]);
 	a = 0;
 	while (b != 0)
 	{
