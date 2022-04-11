@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 09:06:07 by ben               #+#    #+#             */
-/*   Updated: 2022/04/08 12:19:23 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:37:17 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	bubblesort(t_pushswap *vars)
 		b = 0;
 		while (a < vars->size)
 		{
-			if (vars->arrayb[a] > vars->arrayb[a + 1] && a + 1 < vars->size)
+			if (vars->stb[a] > vars->stb[a + 1] && a + 1 < vars->size)
 			{
-				temp = vars->arrayb[a + 1];
-				vars->arrayb[a + 1] = vars->arrayb[a];
-				vars->arrayb[a] = temp;
+				temp = vars->stb[a + 1];
+				vars->stb[a + 1] = vars->stb[a];
+				vars->stb[a] = temp;
 				b++;
 			}
 			a++;
@@ -50,9 +50,9 @@ void	indexing(t_pushswap *vars)
 	b = 0;
 	while (a < vars->size)
 	{
-		if (vars->arraya[a] == vars->arrayb[b])
+		if (vars->sta[a] == vars->stb[b])
 		{
-			vars->arraya[a] = b + 1;
+			vars->sta[a] = b + 1;
 			a++;
 			b = 0;
 		}
@@ -67,5 +67,5 @@ void	cleararray(t_pushswap *vars)
 
 	i = 0;
 	while (i < vars->size)
-		vars->arrayb[i++] = 0;
+		vars->stb[i++] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/08 18:43:13 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:43:22 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(int argc, char **argv)
 
 	i = 1;
 	j = 0;
-	vars.arraya = malloc((argc - 1) * sizeof(int));
-	vars.arrayb = malloc((argc - 1) * sizeof(int));
+	vars.sta = malloc((argc - 1) * sizeof(int));
+	vars.stb = malloc((argc - 1) * sizeof(int));
 	while (j < argc - 1)
 	{
-		vars.arrayb[j] = ft_atoi(argv[i]);
-		vars.arraya[j] = vars.arrayb[j];
+		vars.stb[j] = ft_atoi(argv[i]);
+		vars.sta[j] = vars.stb[j];
 		i++;
 		j++;
 	}
@@ -59,17 +59,17 @@ void	operating(t_pushswap *vars)
 	i = 0;
 	while (i < vars->size)
 	{
-		ft_printf("%i	%i\n", vars->arraya[i], vars->arrayb[i]);
+		ft_printf("%i	%i\n", vars->sta[i], vars->stb[i]);
 		i++;
 	}
 	i = chunks(vars);
 	// ft_printf("%i\n", i);
-	sorting(vars);
+	sortfive(vars);
 	// rotateb(arrayb, sizeb);
 	i = 0;
 	while (i < vars->size)
 	{
-		ft_printf("%i	%i	%i	%i\n", vars->arraya[i], vars->arrayb[i], vars->sizea, vars->sizeb);
+		ft_printf("%i	%i	%i	%i\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb);
 		i++;
 	}
 	// pusha(arraya, arrayb, sizea, sizeb);

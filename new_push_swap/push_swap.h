@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/08 12:10:41 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:43:40 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 typedef struct s_pushswap
 {
-	int	*arraya;
-	int	*arrayb;
+	int	*sta;
+	int	*stb;
 	int	size;
 	int	sizea;
 	int	sizeb;
@@ -46,5 +46,8 @@ void	rrotateab(t_pushswap *vars);
 int		chunks(t_pushswap *vars);
 int		checkifsorteda(t_pushswap *vars);
 void	sorting(t_pushswap *vars);
+void	sortthreea(t_pushswap *vars);
+void	sortthreeplusa(t_pushswap *vars);
+void	sortfive(t_pushswap *vars);
 
 #endif

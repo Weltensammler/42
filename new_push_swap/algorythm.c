@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/08 19:01:09 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:46:03 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	sorting(t_pushswap *vars)
 	i = 0;
 	if ((vars->sizea % 2) != 0)
 			mid = (vars->sizea / 2) + 1;
-		else
-			mid = vars->sizea / 2;
+	else
+		mid = vars->sizea / 2;
 	while (i < vars->sizea - 2)
 	{
-		if (vars->arraya[i] < mid)
+		if (vars->sta[i] < mid)
 		{
 			pushb(vars);
 			if (vars->sizea > 2)
 				sorting(vars);
 			i++;
 		}
-		if (vars->arraya[vars->sizea - 1] < mid)
+		if (vars->sta[vars->sizea - 1] < mid)
 		{
 			rrotatea(vars);
 			pushb(vars);
@@ -60,12 +60,105 @@ int	checkifsorteda(t_pushswap *vars)
 	i = 0;
 	while (i + 1 < vars->sizea)
 	{
-		if (vars->arraya[i] < vars->arraya[i + 1])
+		if (vars->sta[i] < vars->sta[i + 1])
 			i++;
 		else
 			return (0);
 	}
 	return (1);
+}
+
+void	sortthreea(t_pushswap *vars)
+{
+	if (!checkifsorteda(vars))
+	{
+		if (vars->sta[0] - vars->sta[1] == -2)
+		{
+			rrotatea(vars);
+			swapa(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == -1 && vars->sta[1] > vars->sta[2])
+			rrotatea(vars);
+		if (vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] < vars->sta[2])
+			swapa(vars);
+		if (vars->sta[0] - vars->sta[1] == 2)
+			rotatea(vars);
+		if	(vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] > vars->sta[2])
+		{
+			swapa(vars);
+			rrotatea(vars);
+		}
+	}
+}
+
+void	sortfive(t_pushswap *vars)
+{
+	int	mid;
+
+	mid = 3;
+	while (vars->sizea > 3)
+	{
+		if (vars->sta[0] < mid)
+			pushb(vars);
+		if (vars->sta[vars->sizea - 1] < mid)
+		{
+			rrotatea(vars);
+			pushb(vars);
+		}
+		else
+			rotatea(vars);
+	}
+	sortthreea(vars);
+	if (vars->stb[0] > vars->stb[1])
+	{
+		pusha(vars);
+		pusha(vars);
+	}
+	if (vars->stb[0] < vars->stb[1])
+	{
+		rotateb(vars);
+		pusha(vars);
+		pusha(vars);
+	}
+}
+
+void	sortthreeplusa(t_pushswap *vars)
+{
+	if (!checkifsorteda(vars))
+	{
+		if (vars->sta[0] - vars->sta[1] == -2)
+		{
+			pushb(vars);
+			swapa(vars);
+			pusha(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == -1 && vars->sta[1] > vars->sta[2])
+		{
+			rotatea(vars);
+			swapa(vars);
+			pushb(vars);
+			rrotatea(vars);
+			pusha(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] < vars->sta[2])
+			swapa(vars);
+		if (vars->sta[0] - vars->sta[1] == 2)
+		{
+			swapa(vars);
+			rotatea(vars);
+			swapa(vars);
+			rrotatea(vars);
+		}
+		if	(vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] > vars->sta[2])
+		{
+			swapa(vars);
+			rotatea(vars);
+			swapa(vars);
+			pushb(vars);
+			rrotatea(vars);
+			pusha(vars);
+		}
+	}
 }
 
 int	chunks(t_pushswap *vars)
