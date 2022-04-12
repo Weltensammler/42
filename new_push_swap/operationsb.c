@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 10:10:43 by ben               #+#    #+#             */
-/*   Updated: 2022/04/11 15:37:44 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:52:23 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	pushb(t_pushswap *vars)
 	int	i;
 
 	i = 0;
-	//ft_printf("\n		%i	%i\n",vars->sizea, vars->sizeb);
 	temp = vars->sta[0];
 	if (vars->sizea > 0)
 	{

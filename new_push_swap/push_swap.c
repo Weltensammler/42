@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/11 17:43:22 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:49:37 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 
 	i = 1;
 	j = 0;
+	vars.chunks = 0;
 	vars.sta = malloc((argc - 1) * sizeof(int));
 	vars.stb = malloc((argc - 1) * sizeof(int));
 	while (j < argc - 1)
@@ -63,15 +64,23 @@ void	operating(t_pushswap *vars)
 		i++;
 	}
 	i = chunks(vars);
-	// ft_printf("%i\n", i);
-	sortfive(vars);
-	// rotateb(arrayb, sizeb);
-	i = 0;
-	while (i < vars->size)
+	ft_printf("%i\n", i);
+	while (vars->sizea > 3)
 	{
-		ft_printf("%i	%i	%i	%i\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb);
-		i++;
+		chunking(vars);
+		i = 0;
+		while (i < vars->size)
+		{
+			ft_printf("%i	%i	%i	%i\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb);
+			i++;
+		}
 	}
+	//sortthreea(vars);
+	// if (vars->sizea == 3)
+	// 	sortthreea(vars);
+	// if (vars->sizea == 5)
+	// 	sortfive(vars);
+	// rotateb(arrayb, sizeb);
 	// pusha(arraya, arrayb, sizea, sizeb);
 	// pusha(arraya, arrayb, sizea, sizeb);
 	// pusha(arraya, arrayb, sizea, sizeb);
