@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/12 16:06:36 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:42:48 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	sortthreea(t_pushswap *vars);
 void	sortthreeplusa(t_pushswap *vars);
 void	sortfive(t_pushswap *vars);
 int		findmid(int stack[], int size);
-void	chunking(t_pushswap *vars);
+int		chunkinga(t_pushswap *vars);
 int		counttopush(int stack[], int mid, int size);
+int		checkifsortedplus(int stack[], int size);
+int		chunkingplusb(int stack[], int size, t_pushswap *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/12 17:49:37 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:12:26 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,69 @@ int	main(int argc, char **argv)
 void	operating(t_pushswap *vars)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	vars->sizea = vars->size;
 	vars->sizeb = 0;
 	bubblesort(vars);
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i\n", arrayb[i], arraya[i]);
-	// 	i++;
-	// }
 	indexing(vars);
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	ft_printf("%i	%i\n", arraya[i], arrayb[i]);
-	// 	i++;
-	// }
 	cleararray(vars);
 	i = 0;
 	while (i < vars->size)
 	{
-		ft_printf("%i	%i\n", vars->sta[i], vars->stb[i]);
+		//ft_printf("%i	%i\n", vars->sta[i], vars->stb[i]);
 		i++;
 	}
-	i = chunks(vars);
-	ft_printf("%i\n", i);
+	vars->chunks = chunks(vars);
+	vars->chunksizes = malloc(vars->chunks * sizeof(int));
+	i = 0;
+	while (i < vars->chunks)
+		vars->chunksizes[i++] = 0;
+	//ft_printf("%i\n", i);
 	while (vars->sizea > 3)
 	{
-		chunking(vars);
+		vars->chunksizes[j] = chunkinga(vars);
+		j++;
 		i = 0;
-		while (i < vars->size)
+		// while (i < vars->size)
+		// {
+		// 	ft_printf("%i	%i	%i	%i\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb);
+		// 	i++;
+		// }
+	}
+	j = vars->chunks - 2;
+	i = 0;
+	while (j >= 0)
+	{
+		if (vars->sizea == 3)
+			sortthreea(vars);
+		if (!checkifsorteda(vars) && vars->sizea == 2)
+			swapa(vars);
+		while (vars->chunksizes[j] > 0)
 		{
-			ft_printf("%i	%i	%i	%i\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb);
-			i++;
+			if (checkifsortedplus(vars->stb, vars->chunksizes[j]))
+			{
+				while (i < vars->chunksizes[j])
+				{
+					pusha(vars);
+					i++;
+				}
+				vars->chunksizes[j] = 0;
+				j++;
+			}
+			if (vars->chunksizes[j] > 2)
+			{
+				vars->chunksizes[j] = vars->chunksizes[j] - chunkingplusb(vars->stb, vars->chunksizes[j], vars);
+			}
+			i = 0;
+			while (i < vars->size)
+			{
+				ft_printf("%i	vara	%i	varb	%i	sizea	%i	sizeb (operating) %i j\n", vars->sta[i], vars->stb[i], vars->sizea, vars->sizeb, j);
+				i++;
+			}
+			j--;
 		}
 	}
 	//sortthreea(vars);

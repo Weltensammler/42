@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/12 17:50:10 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:05:08 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,68 @@ void	sorting(t_pushswap *vars)
 	}
 }
 
-void	chunking(t_pushswap *vars)
+int	chunkinga(t_pushswap *vars)
 {
 	int	mid;
 	int	topush;
+	int	i;
 
+	
+	i = 0;
 	mid = findmid(vars->sta, vars->sizea);
 	topush = counttopush(vars->sta, mid, vars->sizea);
-	topush = vars->sizea - topush;
-	while (vars->sizea >= topush)
+	while (i < topush)
 	{
-		ft_printf("\n%i\n", topush);
+		ft_printf("\n%ito push (chunkinga)\n", topush);
 		if (vars->sta[0] <= mid)
 		{
 			pushb(vars);
-			// if (vars->sizea > mid)
-			// 	sorting(vars);
+			i++;
 		}
 		else if (vars->sta[vars->sizea - 1] <= mid)
 		{
 			rrotatea(vars);
 			pushb(vars);
-			// if (vars->sizea > mid)
-			// 	sorting(vars);
+			i++;
 		}
 		else
 			rotatea(vars);
 	}
+	return (topush);
+}
+
+int	chunkingplusb(int stack[], int size, t_pushswap *vars)
+{
+	int	mid;
+	int	topush;
+	int	i;
+	int	j;
+
+	
+	i = 0;
+	j = 0;
+	mid = findmid(stack, size);
+	topush = counttopush(stack, mid, size);
+	while (i < topush)
+	{
+		//ft_printf("\n%i\n", topush);
+		if (stack[0] >= mid)
+		{
+			pusha(vars);
+			i++;
+		}
+		else
+		{
+			rotateb(vars);
+			j++;
+		}
+	}
+	while (j > 0)
+	{
+		rrotateb(vars);
+		j--;
+	}
+	return (topush);
 }
 
 int	checkifsorteda(t_pushswap *vars)
@@ -99,6 +134,21 @@ int	checkifsortedb(t_pushswap *vars)
 	while (i + 1 < vars->sizeb)
 	{
 		if (vars->stb[i] > vars->stb[i + 1])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int	checkifsortedplus(int stack[], int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (stack[i] > stack[i + 1])
 			i++;
 		else
 			return (0);

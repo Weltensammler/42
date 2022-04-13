@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:49:37 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/12 16:04:19 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:07:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	findmid(int stack[], int size)
 		i++;
 	}
 	mid = (sum / size);
-	ft_printf("%i, %i, %i, %i\n", stack[0], stack[1], stack[2], mid);
+	//ft_printf("%i, %i, %i, %i\n", stack[0], stack[1], stack[2], mid);
 	return (mid);
 }
 
@@ -40,9 +40,11 @@ int	counttopush(int stack[], int mid, int size)
 	j = 0;
 	while (i < size)
 	{
-		if (stack[i] < mid)
+		if (stack[i] <= mid)
 			j++;
 		i++;
+		ft_printf("\n%i	stack	%i	mid	%i	size	%i	j (counttopush)", stack[i - 1], mid, size, j);
 	}
+	ft_printf("\n%i\n", j);
 	return (j);
 }
