@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorythm_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 09:49:37 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/13 16:07:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:17:31 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	findmid(int stack[], int size)
 	return (mid);
 }
 
-int	counttopush(int stack[], int mid, int size)
+int	counttopusha(int stack[], int mid, int size)
 {
 	int	i;
 	int j;
@@ -43,8 +43,26 @@ int	counttopush(int stack[], int mid, int size)
 		if (stack[i] <= mid)
 			j++;
 		i++;
-		ft_printf("\n%i	stack	%i	mid	%i	size	%i	j (counttopush)", stack[i - 1], mid, size, j);
+		printf("\n%i	stack	%i	mid	%i	size	%i	j (counttopush)", stack[i - 1], mid, size, j);
 	}
-	ft_printf("\n%i\n", j);
+	printf("\n%i\n", j);
+	return (j);
+}
+
+int	counttopushb(int stack[], int mid, int size)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		if (stack[i] >= mid)
+			j++;
+		i++;
+		printf("\n%i	stack	%i	mid	%i	size	%i	j (counttopush)", stack[i - 1], mid, size, j);
+	}
+	printf("\n%i\n", j);
 	return (j);
 }

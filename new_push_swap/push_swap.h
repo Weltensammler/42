@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/13 14:42:48 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:17:52 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,12 @@ void	sortthreeplusa(t_pushswap *vars);
 void	sortfive(t_pushswap *vars);
 int		findmid(int stack[], int size);
 int		chunkinga(t_pushswap *vars);
-int		counttopush(int stack[], int mid, int size);
+int		counttopusha(int stack[], int mid, int size);
+int		counttopushb(int stack[], int mid, int size);
 int		checkifsortedplus(int stack[], int size);
-int		chunkingplusb(int stack[], int size, t_pushswap *vars);
+int		chunkingplusb(int size, t_pushswap *vars);
+int		algorythm(int size, t_pushswap *vars);
+int		chunkingplusa(int size, t_pushswap *vars);
+int		*createarray(int chunks);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorythm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/13 16:05:08 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:19:31 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	chunkinga(t_pushswap *vars)
 	
 	i = 0;
 	mid = findmid(vars->sta, vars->sizea);
-	topush = counttopush(vars->sta, mid, vars->sizea);
+	topush = counttopusha(vars->sta, mid, vars->sizea);
 	while (i < topush)
 	{
-		ft_printf("\n%ito push (chunkinga)\n", topush);
+		printf("\n%ito push (chunkinga)\n", topush);
 		if (vars->sta[0] <= mid)
 		{
 			pushb(vars);
@@ -77,39 +77,39 @@ int	chunkinga(t_pushswap *vars)
 	return (topush);
 }
 
-int	chunkingplusb(int stack[], int size, t_pushswap *vars)
-{
-	int	mid;
-	int	topush;
-	int	i;
-	int	j;
+// int	chunkingplusb(int stack[], int size, t_pushswap *vars)
+// {
+// 	int	mid;
+// 	int	topush;
+// 	int	i;
+// 	int	j;
 
 	
-	i = 0;
-	j = 0;
-	mid = findmid(stack, size);
-	topush = counttopush(stack, mid, size);
-	while (i < topush)
-	{
-		//ft_printf("\n%i\n", topush);
-		if (stack[0] >= mid)
-		{
-			pusha(vars);
-			i++;
-		}
-		else
-		{
-			rotateb(vars);
-			j++;
-		}
-	}
-	while (j > 0)
-	{
-		rrotateb(vars);
-		j--;
-	}
-	return (topush);
-}
+// 	i = 0;
+// 	j = 0;
+// 	mid = findmid(stack, size);
+// 	topush = counttopush(stack, mid, size);
+// 	while (i < topush)
+// 	{
+// 		//ft_printf("\n%i\n", topush);
+// 		if (stack[0] >= mid)
+// 		{
+// 			pusha(vars);
+// 			i++;
+// 		}
+// 		else
+// 		{
+// 			rotateb(vars);
+// 			j++;
+// 		}
+// 	}
+// 	while (j > 0)
+// 	{
+// 		rrotateb(vars);
+// 		j--;
+// 	}
+// 	return (topush);
+// }
 
 int	checkifsorteda(t_pushswap *vars)
 {

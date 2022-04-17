@@ -1,5 +1,5 @@
 SOURCE = push_swap.c ps_utils.c operationsa.c operationsb.c operationsab.c \
-algorythm.c algorythm_utils.c
+algorythm.c algorythm_utils.c newtry.c
 
 OBJECTS = $(SOURCE:.c=.o)
 
