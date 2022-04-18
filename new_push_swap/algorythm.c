@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/17 23:19:31 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/18 12:55:11 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	chunkinga(t_pushswap *vars)
 	topush = counttopusha(vars->sta, mid, vars->sizea);
 	while (i < topush)
 	{
-		printf("\n%ito push (chunkinga)\n", topush);
 		if (vars->sta[0] <= mid)
 		{
 			pushb(vars);
