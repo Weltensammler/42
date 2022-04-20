@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:58:31 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/17 23:17:52 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/19 15:50:18 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ int		chunkingplusb(int size, t_pushswap *vars);
 int		algorythm(int size, t_pushswap *vars);
 int		chunkingplusa(int size, t_pushswap *vars);
 int		*createarray(int chunks);
+int		ft_atoips(const char *str, t_pushswap *vars);
+int		ft_isdigitps(int c, t_pushswap *vars);
+void	checkdoubles(t_pushswap *vars);
 
 #endif

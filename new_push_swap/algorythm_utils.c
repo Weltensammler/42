@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 09:49:37 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/18 12:59:13 by ben              ###   ########.fr       */
+/*   Created: 2022/04/18 15:02:57 by ben               #+#    #+#             */
+/*   Updated: 2022/04/18 15:03:03 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	findmid(int stack[], int size)
 int	counttopusha(int stack[], int mid, int size)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -49,7 +49,7 @@ int	counttopusha(int stack[], int mid, int size)
 int	counttopushb(int stack[], int mid, int size)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;

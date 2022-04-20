@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:22:11 by ben               #+#    #+#             */
-/*   Updated: 2022/04/18 13:49:46 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/18 14:51:40 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int	algorythm(int size, t_pushswap *vars)
 {
 	int	i;
 	int	value;
-	int	blocks;
 	int	*array;
 
 	i = -1;
 	value = 0;
-	blocks = chunks(vars);
 	if (size > 3)
 	{
-		array = malloc(sizeof(int) * blocks);
+		array = malloc(sizeof(int) * chunks(vars));
 		i++;
 	}
 	if (size > 1)
@@ -71,7 +69,6 @@ int	chunkingplusa(int size, t_pushswap *vars)
 	int	i;
 	int	j;
 
-	
 	i = 0;
 	j = 0;
 	mid = findmid(vars->sta, size);
@@ -112,7 +109,6 @@ int	chunkingplusb(int size, t_pushswap *vars)
 	int	i;
 	int	j;
 
-	
 	i = 0;
 	j = 0;
 	mid = findmid(vars->stb, size);

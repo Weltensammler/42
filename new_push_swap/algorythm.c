@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/18 12:55:11 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/18 15:05:17 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sorting(t_pushswap *vars)
 	int	mid;
 
 	if ((vars->sizea % 2) != 0)
-			mid = (vars->sizea / 2) + 1;
+		mid = (vars->sizea / 2) + 1;
 	else
 		mid = vars->sizea / 2;
 	while (vars->sizea > mid)
@@ -53,7 +53,6 @@ int	chunkinga(t_pushswap *vars)
 	int	topush;
 	int	i;
 
-	
 	i = 0;
 	mid = findmid(vars->sta, vars->sizea);
 	topush = counttopusha(vars->sta, mid, vars->sizea);
@@ -75,40 +74,6 @@ int	chunkinga(t_pushswap *vars)
 	}
 	return (topush);
 }
-
-// int	chunkingplusb(int stack[], int size, t_pushswap *vars)
-// {
-// 	int	mid;
-// 	int	topush;
-// 	int	i;
-// 	int	j;
-
-	
-// 	i = 0;
-// 	j = 0;
-// 	mid = findmid(stack, size);
-// 	topush = counttopush(stack, mid, size);
-// 	while (i < topush)
-// 	{
-// 		//ft_printf("\n%i\n", topush);
-// 		if (stack[0] >= mid)
-// 		{
-// 			pusha(vars);
-// 			i++;
-// 		}
-// 		else
-// 		{
-// 			rotateb(vars);
-// 			j++;
-// 		}
-// 	}
-// 	while (j > 0)
-// 	{
-// 		rrotateb(vars);
-// 		j--;
-// 	}
-// 	return (topush);
-// }
 
 int	checkifsorteda(t_pushswap *vars)
 {
