@@ -1,2 +1,0 @@
-Frees needed:
-arraya, arrayb, malloced in main.

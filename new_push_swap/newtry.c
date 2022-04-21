@@ -3,133 +3,112 @@
 /*                                                        :::      ::::::::   */
 /*   newtry.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:22:11 by ben               #+#    #+#             */
-/*   Updated: 2022/04/20 14:07:09 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/21 15:21:26 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	algorythm(int size, t_pushswap *vars)
+void	algorythm(int size, t_pushswap *vars)
 {
 	int	i;
-	int	value;
-	int	*array;
+	int	array[50];
 
-	i = -1;
-	value = 0;
-	if (size > 3)
-	{
-		array = malloc(sizeof(int) * chunks(vars));
-		i++;
-	}
+	i = 0;
+	vars->value = 0;
 	if (size > 1)
 	{
 		while (size > 3)
 		{
 			array[i] = chunkingplusa(size, vars);
-			size = size - array[i];
-			i++;
+			size = size - array[i++];
 		}
 		i--;
-		if (size == 3)
-		{
-			sortthreeplusa(vars);
-			size = 0;
-		}
-		if (size == 2)
-		{
-			if (vars->sta[0] > vars->sta[1])
-				swapa(vars);
-			size = 0;
-		}
-		if (size == 1)
-			size = 0;
+		size = uptothree(size, vars);
 		while (i > -1)
 		{
 			while (array[i] > 0)
 			{
-				value = chunkingplusb(array[i], vars);
-				array[i] = array[i] - value;
-				algorythm(value, vars);
+				vars->value = chunkingplusb(array[i], vars);
+				array[i] = array[i] - vars->value;
+				algorythm(vars->value, vars);
 			}
 			i--;
 		}
-		value = size;
 	}
-	return (value);
 }
 
 int	chunkingplusa(int size, t_pushswap *vars)
 {
-	int	mid;
-	int	topush;
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	mid = findmid(vars->sta, size);
-	topush = counttopusha(vars->sta, mid, size);
-	while (i < topush)
+	vars->i = 0;
+	vars->j = 0;
+	vars->mid = findmid(vars->sta, size);
+	vars->topush = counttopusha(vars->sta, vars->mid, size);
+	while (vars->i < vars->topush)
 	{
-		if (vars->sta[0] <= mid)
+		if (vars->sta[0] <= vars->mid)
 		{
 			pushb(vars);
-			i++;
+			vars->i++;
 		}
 		else
 		{
 			rotatea(vars);
-			j++;
+			vars->j++;
 		}
 	}
-	while (j > 0)
+	while (vars->j > 0)
 	{
 		rrotatea(vars);
-		j--;
+		vars->j--;
 	}
-	return (topush);
-}
-
-int	*createarray(int chunks)
-{
-	int	*array;
-
-	array = malloc(sizeof(int) * chunks);
-	return (array);
+	return (vars->topush);
 }
 
 int	chunkingplusb(int size, t_pushswap *vars)
 {
-	int	mid;
-	int	topush;
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	mid = findmid(vars->stb, size);
-	topush = counttopushb(vars->stb, mid, size);
-	while (i < topush)
+	vars->i = 0;
+	vars->j = 0;
+	vars->mid = findmid(vars->stb, size);
+	vars->topush = counttopushb(vars->stb, vars->mid, size);
+	while (vars->i < vars->topush)
 	{
-		if (vars->stb[0] >= mid)
+		if (vars->stb[0] >= vars->mid)
 		{
 			pusha(vars);
-			i++;
+			vars->i++;
 		}
 		else
 		{
 			rotateb(vars);
-			j++;
+			vars->j++;
 		}
 	}
-	while (j > 0)
+	while (vars->j > 0)
 	{
 		rrotateb(vars);
-		j--;
+		vars->j--;
 	}
-	return (topush);
+	return (vars->topush);
+}
+
+int	uptothree(int size, t_pushswap *vars)
+{
+	if (size == 3)
+	{
+		sortthreeplusa(vars);
+		size = 0;
+	}
+	if (size == 2)
+	{
+		if (vars->sta[0] > vars->sta[1])
+			swapa(vars);
+		size = 0;
+	}
+	if (size == 1)
+		size = 0;
+	return (size);
 }

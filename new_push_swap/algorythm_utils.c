@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorythm_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:02:57 by ben               #+#    #+#             */
-/*   Updated: 2022/04/18 15:03:03 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/21 12:13:50 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ int	counttopushb(int stack[], int mid, int size)
 		i++;
 	}
 	return (j);
+}
+
+int	chunks(t_pushswap *vars)
+{
+	int	chunks;
+	int	size;
+
+	chunks = 0;
+	size = vars->sizea;
+	while (size > 2)
+	{
+		if ((size % 2) != 0)
+			size = (size / 2) + 1;
+		else
+			size = size / 2;
+		chunks++;
+	}
+	return (chunks);
 }

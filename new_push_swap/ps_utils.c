@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 09:06:07 by ben               #+#    #+#             */
-/*   Updated: 2022/04/20 13:49:37 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/21 10:54:01 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ int	ft_atoips(const char *str, t_pushswap *vars)
 		sign = 1 - 2 * (str[i++] == '-');
 	else if (*str == '\0')
 		return (0);
-	while (ft_isdigit(*(str + i)))
-		value = value * 10 + *(str + i++) - '0';
-	if (sign * value > 2147483647 || sign * value < -2147483648)
+	while (*(str + i))
 	{
-		free(vars->sta);
-		free(vars->stb);
-		write(1, "Error", 5);
-		exit(0);
+		if (ft_isdigit(*(str + i)))
+			value = value * 10 + *(str + i++) - '0';
+		else
+			freedom(vars);
 	}
+	if (sign * value > 2147483647 || sign * value < -2147483648)
+		freedom(vars);
 	return ((int)(sign * value));
 }

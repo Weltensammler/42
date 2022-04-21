@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/20 13:49:52 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/21 11:16:04 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,12 @@ int	main(int argc, char **argv)
 	{
 		if (ft_atoips(argv[i], &vars))
 		{
-			vars.stb[j] = ft_atoips(argv[i], &vars);
+			vars.stb[j] = ft_atoips(argv[i++], &vars);
 			vars.sta[j] = vars.stb[j];
-			i++;
 			j++;
 		}
 		else
-		{
-			free(vars.sta);
-			free(vars.stb);
-			write(1, "Error\n", 6);
-			exit(0);
-		}
+			freedom(&vars);
 	}
 	vars.size = (argc - 1);
 	operating(&vars);
@@ -67,7 +61,7 @@ void	operating(t_pushswap *vars)
 		else if (vars->size == 3)
 			sortthreea(vars);
 		else
-		algorythm(vars->sizea, vars);
+			algorythm(vars->sizea, vars);
 	}
 }
 
@@ -94,4 +88,12 @@ void	checkdoubles(t_pushswap *vars)
 		}
 		i++;
 	}
+}
+
+void	freedom(t_pushswap *vars)
+{
+	free(vars->sta);
+	free(vars->stb);
+	write(1, "Error\n", 6);
+	exit(0);
 }
