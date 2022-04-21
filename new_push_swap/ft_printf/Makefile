@@ -3,7 +3,7 @@ SRCS = ft_printf.c additionalf.c conversions.c conversions2.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
-RM = rm -f
+RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror -I.
 
 NAME = ft_printf.a

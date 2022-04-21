@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/21 11:16:04 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:21:43 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,9 @@ int	main(int argc, char **argv)
 	vars.stb = malloc((argc - 1) * sizeof(int));
 	while (j < argc - 1)
 	{
-		if (ft_atoips(argv[i], &vars))
-		{
 			vars.stb[j] = ft_atoips(argv[i++], &vars);
 			vars.sta[j] = vars.stb[j];
 			j++;
-		}
-		else
-			freedom(&vars);
 	}
 	vars.size = (argc - 1);
 	operating(&vars);
