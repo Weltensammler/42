@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:00:08 by ben               #+#    #+#             */
-/*   Updated: 2022/04/19 15:59:56 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/20 13:49:52 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	main(int argc, char **argv)
 	vars.stb = malloc((argc - 1) * sizeof(int));
 	while (j < argc - 1)
 	{
-		if (ft_atoi(argv[i]))
+		if (ft_atoips(argv[i], &vars))
 		{
-			vars.stb[j] = ft_atoi(argv[i]);
+			vars.stb[j] = ft_atoips(argv[i], &vars);
 			vars.sta[j] = vars.stb[j];
 			i++;
 			j++;

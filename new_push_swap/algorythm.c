@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:06:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/18 15:05:17 by ben              ###   ########.fr       */
+/*   Updated: 2022/04/20 14:05:33 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,45 @@ void	sortfive(t_pushswap *vars)
 }
 
 void	sortthreeplusa(t_pushswap *vars)
+{
+	if (!checkifsorteda(vars))
+	{
+		if (vars->sta[0] - vars->sta[1] == -2)
+		{
+			pushb(vars);
+			swapa(vars);
+			pusha(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == -1 && vars->sta[1] > vars->sta[2])
+		{
+			rotatea(vars);
+			swapa(vars);
+			pushb(vars);
+			rrotatea(vars);
+			pusha(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] < vars->sta[2])
+			swapa(vars);
+		if (vars->sta[0] - vars->sta[1] == 2)
+		{
+			swapa(vars);
+			rotatea(vars);
+			swapa(vars);
+			rrotatea(vars);
+		}
+		if (vars->sta[0] - vars->sta[1] == 1 && vars->sta[1] > vars->sta[2])
+		{
+			swapa(vars);
+			rotatea(vars);
+			swapa(vars);
+			pushb(vars);
+			rrotatea(vars);
+			pusha(vars);
+		}
+	}
+}
+
+void	sortthreeplusb(t_pushswap *vars)
 {
 	if (!checkifsorteda(vars))
 	{
