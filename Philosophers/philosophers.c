@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/23 16:39:26 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/23 21:53:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 int	main(int argc, char **argv)
 {
 	t_philosophers	vars;
-	t_philid		varsid;
+	t_philid		*varsid;
 	int				i;
 
 	i = 0;
 	init_vars(argc, argv, &vars);
-	init_varsid(&vars, &varsid);
+	varsid = init_varsid(&vars);
 	gettime(&vars);
 	timepassed(&vars);
-	while (!checkifdead(&vars, &varsid) && i < vars.notte)
+	while (!checkifdead(&vars, varsid) && i < vars.notte)
 	{
-		eating(&vars, &varsid);
-		sleeping(&vars, &varsid);
-		thinking(&vars, &varsid);
+		eating(&vars, varsid);
+		sleeping(&vars, varsid);
+		thinking(&vars, varsid);
+		i++;
+	}
+	i = 0;
+	while (i < vars.phils)
+	{
+		printf("\n%i\n", varsid[i].ID);
 		i++;
 	}
 	return (0);
@@ -52,11 +58,20 @@ int	init_vars(int argc, char **argv, t_philosophers *vars)
 	return (1);
 }
 
-int	init_varsid(t_philosophers *vars, t_philid *varsid)
+t_philid	*init_varsid(t_philosophers *vars)
 {
-	varsid->ID = 1;
-	varsid->vars = vars;
-	return (0);
+	t_philid	*varsid;
+	int			i;
+
+	i = 0;
+	varsid = malloc(sizeof(t_philid) * vars->phils);
+	while (i < vars->phils)
+	{
+		varsid[i].ID = i + 1;
+		varsid[i].vars = vars;
+		i++;
+	}
+	return (varsid);
 }
 
 void	gettime(t_philosophers *vars)

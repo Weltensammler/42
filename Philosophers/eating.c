@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/23 16:22:25 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/23 21:58:41 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 	{
 		timepassed(vars);
 		checkifdead(vars, varsid);
-		usleep(1 * 1000);
+		usleep(1000);
 	}
 	printf("%li	%i	is done eating\n", vars->runtime, varsid->ID);
 	return (0);
@@ -42,7 +42,7 @@ int	sleeping(t_philosophers *vars, t_philid *varsid)
 	{
 		timepassed(vars);
 		checkifdead(vars, varsid);
-		usleep(1 * 1000);
+		usleep(1000);
 		i++;
 	}
 	printf("%li	%i	is done sleeping\n", vars->runtime, varsid->ID);
@@ -62,7 +62,7 @@ int	thinking(t_philosophers *vars, t_philid *varsid)
 	{
 		timepassed(vars);
 		checkifdead(vars, varsid);
-		usleep(1 * 1000);
+		usleep(1000);
 		i++;
 	}
 	printf("%li	%i	is done thinking\n", vars->runtime, varsid->ID);
