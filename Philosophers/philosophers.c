@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/23 21:53:09 by bschende         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:16:12 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,25 @@ int	main(int argc, char **argv)
 	varsid = init_varsid(&vars);
 	gettime(&vars);
 	timepassed(&vars);
-	while (!checkifdead(&vars, varsid) && i < vars.notte)
+	printf("OK phils %i", vars.phils);
+	while (i < vars.phils)
 	{
-		eating(&vars, varsid);
-		sleeping(&vars, varsid);
-		thinking(&vars, varsid);
+		pthread_create(varsid[i].t, NULL, &cycle, (void *)&varsid[i]);
 		i++;
 	}
 	i = 0;
 	while (i < vars.phils)
 	{
-		printf("\n%i\n", varsid[i].ID);
+		pthread_join(*varsid[i].t, NULL);
 		i++;
 	}
+	// while (!checkifdead(&vars, varsid) && i < vars.notte)
+	// {
+	// 	eating(&vars, varsid);
+	// 	sleeping(&vars, varsid);
+	// 	thinking(&vars, varsid);
+	// 	i++;
+	// }
 	return (0);
 }
 
