@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/02 15:09:52 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/08 15:38:57 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,30 @@ int	main(int argc, char **argv)
 	timepassed(&vars);
 	while (i < vars.phils)
 	{
-		pthread_create(&varsid[i].t, NULL, &cycle, (void *)&varsid[i]);
+		pthread_mutex_init(varsid[i].rfork, NULL);
 		i++;
 	}
 	i = 0;
 	while (i < vars.phils)
-		pthread_join(varsid[i++].t, NULL);
-	while (!checkifdead(&vars, varsid) && i < vars.notte)
 	{
-		eating(&vars, varsid);
-		sleeping(&vars, varsid);
-		thinking(&vars, varsid);
+		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
+		timepassed(&vars);
+		i = i + 2;
+	}
+	i = 1;
+	while (i < vars.phils)
+	{
+		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
+		timepassed(&vars);
+		i = i + 2;
+	}
+	i = 0;
+	while (i < vars.phils)
+		pthread_join(varsid[i++].t, NULL);
+	i = 0;
+	while (i < vars.phils)
+	{
+		pthread_mutex_destroy(&varsid[i].lfork);
 		i++;
 	}
 	return (0);
@@ -71,6 +84,10 @@ t_philid	*init_varsid(t_philosophers *vars)
 	{
 		varsid[i].ID = i + 1;
 		varsid[i].vars = vars;
+		if (i - 1 >= 0)
+			varsid[i].rfork = &varsid[i - 1].lfork;
+		else if (i - 1 < 0)
+			varsid[i].rfork = &varsid[vars->phils - 1].lfork;
 		i++;
 	}
 	return (varsid);

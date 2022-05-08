@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eating.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/02 15:02:16 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/08 15:06:40 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	eating(t_philosophers *vars, t_philid *varsid)
 {
 	timepassed(vars);
+	take_forks(&varsid->lfork, varsid->rfork);
+	printf("%li	%i	has taken a fork\n", vars->runtime, varsid->ID);
 	varsid->starteat = vars->runtime;
 	if (!checkifdead(vars, varsid))
 		printf("%li	%i	is eating\n", vars->runtime, varsid->ID);
@@ -23,7 +25,9 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 		timepassed(vars);
 		checkifdead(vars, varsid);
 		usleep(1000);
+		// printf("Phil #%i starteat %li runtime %li\n", varsid->ID, varsid->starteat, vars->runtime);
 	}
+	free_forks(&varsid->lfork, varsid->rfork);
 	return (0);
 }
 
@@ -43,7 +47,6 @@ int	sleeping(t_philosophers *vars, t_philid *varsid)
 		usleep(1000);
 		i++;
 	}
-	printf("%li	%i	is done sleeping\n", vars->runtime, varsid->ID);
 	return (0);
 }
 
@@ -55,15 +58,14 @@ int	thinking(t_philosophers *vars, t_philid *varsid)
 	timepassed(vars);
 	varsid->startthink = vars->runtime;
 	if (!checkifdead(vars, varsid))
-		printf("%li	%i	is thinking\n", vars->runtime, varsid->ID);
-	while (vars->runtime < (varsid->startthink + vars->tts))
-	{
-		timepassed(vars);
-		checkifdead(vars, varsid);
-		usleep(1000);
-		i++;
-	}
-	printf("%li	%i	is done thinking\n", vars->runtime, varsid->ID);
+	printf("%li	%i	is thinking\n", vars->runtime, varsid->ID);
+	// while (vars->runtime < (varsid->startthink + vars->tts))
+	// {
+	// 	timepassed(vars);
+	// 	checkifdead(vars, varsid);
+	// 	usleep(1000);
+	// 	i++;
+	// }
 	return (0);
 }
 
@@ -76,4 +78,16 @@ int	checkifdead(t_philosophers *vars, t_philid *varsid)
 			exit(0);
 		}
 	return (0);
+}
+
+void	take_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork)
+{
+	pthread_mutex_lock(lfork);
+	pthread_mutex_lock(rfork);
+}
+
+void	free_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork)
+{
+	pthread_mutex_unlock(lfork);
+	pthread_mutex_unlock(rfork);
 }

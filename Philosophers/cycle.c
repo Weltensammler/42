@@ -6,24 +6,22 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/24 13:01:53 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/08 15:03:43 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*cycle(void *varsid)
+void	*cycle(t_philid *varsid)
 {
 	int			i;
-	t_philid *	newid;
 
 	i = 0;
-	newid = varsid;
-	while (!checkifdead(newid->vars, varsid) && i < newid->vars->notte)
+	while (!checkifdead(varsid->vars, varsid) && i < varsid->vars->notte)
 	{
-		eating(newid->vars, varsid);
-		sleeping(newid->vars, varsid);
-		thinking(newid->vars, varsid);
+		eating(varsid->vars, varsid);
+		sleeping(varsid->vars, varsid);
+		thinking(varsid->vars, varsid);
 		i++;
 	}
 	return (NULL);

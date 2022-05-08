@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/02 17:05:36 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/08 15:41:37 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ typedef struct s_philosophers
 
 typedef struct s_philid
 {
-	// mutex
 	int				ID;
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
-	int				fork;
-	int				rfork;
+	pthread_mutex_t	*rfork;
+	pthread_mutex_t	lfork;
 	pthread_t		t;
 	t_philosophers	*vars;
 }	t_philid;
@@ -56,6 +55,8 @@ int			eating(t_philosophers *vars, t_philid *varsid);
 int			sleeping(t_philosophers *vars, t_philid *varsid);
 int			thinking(t_philosophers *vars, t_philid *varsid);
 int			checkifdead(t_philosophers *vars, t_philid *varsid);
-void		*cycle(void *varsid);
+void		*cycle(t_philid *varsid);
+void		take_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
+void		free_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
 
 #endif
