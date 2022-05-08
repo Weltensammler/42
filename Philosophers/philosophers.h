@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/24 12:19:34 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:05:36 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ typedef struct s_philid
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
-	pthread_t		*t;
+	int				fork;
+	int				rfork;
+	pthread_t		t;
 	t_philosophers	*vars;
 }	t_philid;
 

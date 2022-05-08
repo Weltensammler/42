@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/24 13:16:12 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:09:52 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,21 @@ int	main(int argc, char **argv)
 	varsid = init_varsid(&vars);
 	gettime(&vars);
 	timepassed(&vars);
-	printf("OK phils %i", vars.phils);
 	while (i < vars.phils)
 	{
-		pthread_create(varsid[i].t, NULL, &cycle, (void *)&varsid[i]);
+		pthread_create(&varsid[i].t, NULL, &cycle, (void *)&varsid[i]);
 		i++;
 	}
 	i = 0;
 	while (i < vars.phils)
+		pthread_join(varsid[i++].t, NULL);
+	while (!checkifdead(&vars, varsid) && i < vars.notte)
 	{
-		pthread_join(*varsid[i].t, NULL);
+		eating(&vars, varsid);
+		sleeping(&vars, varsid);
+		thinking(&vars, varsid);
 		i++;
 	}
-	// while (!checkifdead(&vars, varsid) && i < vars.notte)
-	// {
-	// 	eating(&vars, varsid);
-	// 	sleeping(&vars, varsid);
-	// 	thinking(&vars, varsid);
-	// 	i++;
-	// }
 	return (0);
 }
 
@@ -85,7 +81,8 @@ void	gettime(t_philosophers *vars)
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	vars->timestart = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	vars->timestart = (current_time.tv_sec * 1000) + \
+	(current_time.tv_usec / 1000);
 }
 
 void	timepassed(t_philosophers *vars)
@@ -93,5 +90,6 @@ void	timepassed(t_philosophers *vars)
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	vars->runtime = ((time.tv_sec * 1000) + (time.tv_usec / 1000)) - vars->timestart;
+	vars->runtime = ((time.tv_sec * 1000) + \
+	(time.tv_usec / 1000)) - vars->timestart;
 }

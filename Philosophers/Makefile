@@ -12,7 +12,7 @@ all: $(NAME)
 	$(CC) -Wall -Wextra -Werror -pthread -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(SOURCE) -o $(NAME)
+	$(CC) $(FLAGS) $(SOURCE) -o $(NAME)
 
 clean:
 	rm -rf $(OBJECTS)

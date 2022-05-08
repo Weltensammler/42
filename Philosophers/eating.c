@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eating.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/04/23 21:58:41 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/02 15:02:16 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 {
 	timepassed(vars);
 	varsid->starteat = vars->runtime;
-	printf("Test starteat %li\n", varsid->starteat);
 	if (!checkifdead(vars, varsid))
 		printf("%li	%i	is eating\n", vars->runtime, varsid->ID);
 	while (vars->runtime < (varsid->starteat + vars->tte))
@@ -25,7 +24,6 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 		checkifdead(vars, varsid);
 		usleep(1000);
 	}
-	printf("%li	%i	is done eating\n", vars->runtime, varsid->ID);
 	return (0);
 }
 
