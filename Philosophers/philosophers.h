@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/08 15:41:37 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:07:43 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_philosophers
 	int				tte;
 	int				tts;
 	int				notte;
-	int				time;
+	int				todeath;
+	int				allfull;
+	pthread_mutex_t	death;
 	int				*fork;
 	long int		timestart;
 	long int		runtime;
@@ -39,6 +41,7 @@ typedef struct s_philid
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
+	int				full;
 	pthread_mutex_t	*rfork;
 	pthread_mutex_t	lfork;
 	pthread_t		t;
@@ -58,5 +61,8 @@ int			checkifdead(t_philosophers *vars, t_philid *varsid);
 void		*cycle(t_philid *varsid);
 void		take_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
 void		free_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
+int			checkinput(int argc, char **argv);
+int			ft_strchr(const char *str, int c);
+int			printstate(int what, t_philid *philid);
 
 #endif

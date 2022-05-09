@@ -1,4 +1,4 @@
-SOURCE = philosophers.c philosophers_utils.c eating.c cycle.c
+SOURCE = philosophers.c philosophers_utils.c eating.c cycle.c playing.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

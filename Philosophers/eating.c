@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/08 16:30:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:07:11 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 {
 	timepassed(vars);
 	take_forks(&varsid->lfork, varsid->rfork);
-	printf("%li	%i	has taken a fork\n", vars->runtime, varsid->ID);
+	printstate(1, varsid);
 	varsid->starteat = vars->runtime;
 	if (!checkifdead(vars, varsid))
-		printf("%li	%i	is eating\n", vars->runtime, varsid->ID);
+		printstate(2, varsid);
 	while (vars->runtime < (varsid->starteat + vars->tte))
 	{
 		timepassed(vars);
@@ -38,7 +38,7 @@ int	sleeping(t_philosophers *vars, t_philid *varsid)
 	timepassed(vars);
 	varsid->startsleep = vars->runtime;
 	if (!checkifdead(vars, varsid))
-		printf("%li	%i	is sleeping\n", vars->runtime, varsid->ID);
+		printstate(3, varsid);
 	while (vars->runtime < (varsid->startsleep + vars->tts))
 	{
 		timepassed(vars);
@@ -57,14 +57,7 @@ int	thinking(t_philosophers *vars, t_philid *varsid)
 	timepassed(vars);
 	varsid->startthink = vars->runtime;
 	if (!checkifdead(vars, varsid))
-		printf("%li	%i	is thinking\n", vars->runtime, varsid->ID);
-	/*while (vars->runtime < (varsid->startthink + vars->tts))
-	{
-		timepassed(vars);
-		checkifdead(vars, varsid);
-		usleep(1000);
-		i++;
-	}*/
+		printstate(4, varsid);
 	return (0);
 }
 
@@ -73,8 +66,9 @@ int	checkifdead(t_philosophers *vars, t_philid *varsid)
 	timepassed(vars);
 	if (vars->runtime - varsid->starteat > vars->ttd)
 	{
-		printf("%li	%i	died\n", vars->runtime, varsid->ID);
-		exit(0);
+		vars->todeath = 1;
+		// printf("%li	%i	died\n", vars->runtime, varsid->ID);
+		// exit(0);
 	}
 	return (0);
 }

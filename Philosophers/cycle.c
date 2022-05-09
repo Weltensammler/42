@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/08 16:27:57 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:14:10 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	*cycle(t_philid *varsid)
 		sleeping(varsid->vars, varsid);
 		thinking(varsid->vars, varsid);
 		i++;
+		if (i == varsid->vars->notte)
+			varsid->full = 1;
+		// printf("cycle i %i notte %i\n", i, varsid->vars->notte);
+		// i++;
 	}
 	return (NULL);
 }
