@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:47:54 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/02 13:20:52 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/11 10:56:42 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ int	ft_atoi(const char *str)
 int	ft_isdigit(int c)
 {
 	if (c > 47 && c < 58)
+		return (1);
+	return (0);
+}
+
+int	ft_strchr(const char *str, int c)
+{
+	int				i;
+	unsigned char	*temp;
+
+	temp = (unsigned char *)str;
+	i = 0;
+	while (*(temp + i))
+	{
+		if (*(temp + i) == (unsigned char)c)
+			return (1);
+		i++;
+	}
+	if (*(temp + i) == (unsigned char)c)
 		return (1);
 	return (0);
 }

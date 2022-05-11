@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/09 15:07:43 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:21:07 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_philid
 	long int		startsleep;
 	long int		startthink;
 	int				full;
+	int				i;
+	int				leftf;
+	int				*rightf;
 	pthread_mutex_t	*rfork;
 	pthread_mutex_t	lfork;
 	pthread_t		t;
@@ -51,7 +54,7 @@ typedef struct s_philid
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			init_vars(int argc, char **argv, t_philosophers *vars);
-t_philid	*init_varsid(t_philosophers *vars);
+t_philid	*init_varsid(t_philosophers *vars, int i);
 void		gettime(t_philosophers *vars);
 void		timepassed(t_philosophers *vars);
 int			eating(t_philosophers *vars, t_philid *varsid);
@@ -59,10 +62,11 @@ int			sleeping(t_philosophers *vars, t_philid *varsid);
 int			thinking(t_philosophers *vars, t_philid *varsid);
 int			checkifdead(t_philosophers *vars, t_philid *varsid);
 void		*cycle(t_philid *varsid);
-void		take_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
-void		free_forks(pthread_mutex_t *lfork, pthread_mutex_t *rfork);
+void		take_forks(t_philid *varsid);
+void		free_forks(t_philid *varsid);
 int			checkinput(int argc, char **argv);
 int			ft_strchr(const char *str, int c);
 int			printstate(int what, t_philid *philid);
+void		init_threads(t_philosophers *vars, t_philid *varsid);
 
 #endif

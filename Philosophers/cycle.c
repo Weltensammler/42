@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/09 15:14:10 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 10:46:35 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,45 @@
 
 void	*cycle(t_philid *varsid)
 {
-	int			i;
-
-	i = 0;
-	while (!checkifdead(varsid->vars, varsid) && i < varsid->vars->notte)
+	while (!checkifdead(varsid->vars, varsid))
 	{
 		eating(varsid->vars, varsid);
 		sleeping(varsid->vars, varsid);
 		thinking(varsid->vars, varsid);
-		i++;
-		if (i == varsid->vars->notte)
+		varsid->i++;
+		if (varsid->i == varsid->vars->notte)
 			varsid->full = 1;
-		// printf("cycle i %i notte %i\n", i, varsid->vars->notte);
-		// i++;
 	}
 	return (NULL);
+}
+
+int	sleeping(t_philosophers *vars, t_philid *varsid)
+{
+	int	i;
+
+	i = 0;
+	timepassed(vars);
+	varsid->startsleep = vars->runtime;
+	if (!checkifdead(vars, varsid))
+		printstate(3, varsid);
+	while (vars->runtime < (varsid->startsleep + vars->tts))
+	{
+		timepassed(vars);
+		checkifdead(vars, varsid);
+		usleep(1000);
+		i++;
+	}
+	return (0);
+}
+
+int	thinking(t_philosophers *vars, t_philid *varsid)
+{
+	int	i;
+
+	i = 0;
+	timepassed(vars);
+	varsid->startthink = vars->runtime;
+	if (!checkifdead(vars, varsid))
+		printstate(4, varsid);
+	return (0);
 }
