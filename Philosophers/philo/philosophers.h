@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 11:21:07 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:45:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philosophers
 
 typedef struct s_philid
 {
-	int				ID;
+	int				id;
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
@@ -68,5 +68,6 @@ int			checkinput(int argc, char **argv);
 int			ft_strchr(const char *str, int c);
 int			printstate(int what, t_philid *philid);
 void		init_threads(t_philosophers *vars, t_philid *varsid);
+int			maindeath(t_philosophers *vars, t_philid *varsid);
 
 #endif

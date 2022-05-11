@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:41:56 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 10:56:26 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:46:13 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	printstate(int what, t_philid *varsid)
 	pthread_mutex_lock(&varsid->vars->death);
 	timepassed(varsid->vars);
 	if (what == 1)
-		printf("%li	%i	has taken a fork\n", varsid->vars->runtime, varsid->ID);
+		printf("%li	%i	has taken a fork\n", varsid->vars->runtime, varsid->id);
 	else if (what == 2)
-		printf("%li	%i	is eating\n", varsid->vars->runtime, varsid->ID);
+		printf("%li	%i	is eating\n", varsid->vars->runtime, varsid->id);
 	else if (what == 3)
-		printf("%li	%i	is sleeping\n", varsid->vars->runtime, varsid->ID);
+		printf("%li	%i	is sleeping\n", varsid->vars->runtime, varsid->id);
 	else if (what == 4)
-		printf("%li	%i	is thinking\n", varsid->vars->runtime, varsid->ID);
+		printf("%li	%i	is thinking\n", varsid->vars->runtime, varsid->id);
 	pthread_mutex_unlock(&varsid->vars->death);
 	return (0);
 }

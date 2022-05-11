@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 11:24:02 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:40:36 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,21 @@ int	main(int argc, char **argv)
 	gettime(&vars);
 	timepassed(&vars);
 	while (i < vars.phils)
-	{
-		pthread_mutex_init(&varsid[i].lfork, NULL);
-		i++;
-	}
+		pthread_mutex_init(&varsid[i++].lfork, NULL);
 	pthread_mutex_init(&vars.death, NULL);
 	init_threads(&vars, varsid);
-	while (vars.todeath == 0)
-	{
-		i = 0;
-		while (i < vars.phils)
-		{
-			if (varsid[i].full == 1)
-				vars.allfull = vars.allfull + 1;
-			i++;
-		}
-		if (vars.allfull >= vars.phils)
-			break ;
-	}
-	pthread_mutex_lock(&varsid->vars->death);
-	if (vars.todeath == 1)
-		printf("%li	%i	died\n", vars.runtime, varsid->ID);
+	while (maindeath(&vars, varsid))
 	i = 0;
 	while (i < vars.phils)
-	{
-		pthread_mutex_destroy(&varsid[i].lfork);
-		i++;
-	}
+		pthread_mutex_destroy(&varsid[i++].lfork);
 	pthread_mutex_destroy(&varsid->vars->death);
+	free(varsid);
 	return (0);
 }
 
 int	init_vars(int argc, char **argv, t_philosophers *vars)
 {
-	int				i;
+	int	i;
 
 	i = 0;
 	vars->phils = ft_atoi(argv[1]);
@@ -88,7 +69,7 @@ t_philid	*init_varsid(t_philosophers *vars, int i)
 	varsid = malloc(sizeof(t_philid) * vars->phils);
 	while (i < vars->phils)
 	{
-		varsid[i].ID = i + 1;
+		varsid[i].id = i + 1;
 		varsid[i].vars = vars;
 		varsid[i].full = 0;
 		varsid[i].leftf = 0;
@@ -128,7 +109,7 @@ void	init_threads(t_philosophers *vars, t_philid *varsid)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
 		pthread_detach(varsid[i].t);
-		timepassed(vars); // WHY
+		timepassed(vars);
 		i = i + 2;
 	}
 	usleep(1000);
@@ -137,7 +118,7 @@ void	init_threads(t_philosophers *vars, t_philid *varsid)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
 		pthread_detach(varsid[i].t);
-		timepassed(vars); // WHY
+		timepassed(vars);
 		i = i + 2;
 	}
 }
