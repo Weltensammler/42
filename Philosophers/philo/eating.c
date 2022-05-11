@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 11:10:36 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:05:28 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 {
 	timepassed(vars);
 	take_forks(varsid);
-	varsid->starteat = vars->runtime;
+	timepassed(vars);
 	if (!checkifdead(vars, varsid))
 		printstate(2, varsid);
+	varsid->starteat = vars->runtime;
 	while (vars->runtime < (varsid->starteat + vars->tte))
 	{
 		timepassed(vars);

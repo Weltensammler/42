@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 12:40:36 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 19:05:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	init_vars(int argc, char **argv, t_philosophers *vars)
 	vars->tts = ft_atoi(argv[4]);
 	vars->fork = malloc(sizeof(int) * vars->phils);
 	vars->todeath = 0;
+	vars->who = 0;
 	vars->allfull = 0;
 	if (argc == 6)
 		vars->notte = ft_atoi(argv[5]);
@@ -105,6 +106,8 @@ void	init_threads(t_philosophers *vars, t_philid *varsid)
 	int	i;
 
 	i = 0;
+	pthread_create(&vars->dead, NULL, (void *)&deathclock, (void *)&varsid[i]);
+	pthread_detach(varsid[i].t);
 	while (i < vars->phils)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);

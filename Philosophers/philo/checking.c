@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:09:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 11:47:10 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:14:54 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	checkifdead(t_philosophers *vars, t_philid *varsid)
 	if (vars->runtime - varsid->starteat > vars->ttd)
 	{
 		vars->todeath = 1;
+		vars->who = varsid->id;
+		// printf("Check death ID %i todeath %i starteat %li runtime %li\n", varsid->id, vars->todeath, varsid->starteat, vars->runtime);
 	}
 	return (0);
 }
@@ -28,6 +30,7 @@ int	maindeath(t_philosophers *vars, t_philid *varsid)
 
 	while (vars->todeath == 0)
 	{
+		timepassed(vars);
 		i = 0;
 		while (i < vars->phils)
 		{
@@ -40,7 +43,10 @@ int	maindeath(t_philosophers *vars, t_philid *varsid)
 	}
 	pthread_mutex_lock(&varsid->vars->death);
 	if (vars->todeath == 1)
-		printf("%li	%i	died\n", vars->runtime, varsid->id);
+	{
+		printf("%li	%i	died\n", vars->runtime, vars->who);
+		// printf("ID %i todeath %i starteat %li runtime %li\n", varsid->id, vars->todeath, varsid->starteat, vars->runtime);
+	}
 	return (0);
 }
 
@@ -51,4 +57,25 @@ void	timepassed(t_philosophers *vars)
 	gettimeofday(&time, NULL);
 	vars->runtime = ((time.tv_sec * 1000) + \
 	(time.tv_usec / 1000)) - vars->timestart;
+}
+
+void	*deathclock(t_philid *varsid)
+{
+	int	i;
+
+	while (varsid->vars->todeath == 0)
+	{
+		i = 0;
+		while (i < varsid->vars->phils)
+		{
+			timepassed(varsid->vars);
+			if (varsid->vars->runtime - varsid[i].starteat > varsid->vars->ttd)
+			{
+				varsid->vars->todeath = 1;
+				varsid->vars->who = varsid->id;
+			}
+			i++;
+		}
+	}
+	return (NULL);
 }

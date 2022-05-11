@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 10:46:35 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:21:05 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int	thinking(t_philosophers *vars, t_philid *varsid)
 	varsid->startthink = vars->runtime;
 	if (!checkifdead(vars, varsid))
 		printstate(4, varsid);
+	usleep(3000);
 	return (0);
 }
