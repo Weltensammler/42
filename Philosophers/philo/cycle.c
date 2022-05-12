@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 18:21:05 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 06:44:40 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	sleeping(t_philosophers *vars, t_philid *varsid)
 
 int	thinking(t_philosophers *vars, t_philid *varsid)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	timepassed(vars);
 	varsid->startthink = vars->runtime;
 	if (!checkifdead(vars, varsid))

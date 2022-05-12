@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 19:05:09 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 07:33:45 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	main(int argc, char **argv)
 
 int	init_vars(int argc, char **argv, t_philosophers *vars)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	vars->phils = ft_atoi(argv[1]);
 	vars->ttd = ft_atoi(argv[2]);
 	vars->tte = ft_atoi(argv[3]);
 	vars->tts = ft_atoi(argv[4]);
-	vars->fork = malloc(sizeof(int) * vars->phils);
+	// vars->fork = malloc(sizeof(int) * vars->phils);
 	vars->todeath = 0;
 	vars->who = 0;
 	vars->allfull = 0;
@@ -58,8 +58,8 @@ int	init_vars(int argc, char **argv, t_philosophers *vars)
 		vars->notte = ft_atoi(argv[5]);
 	else if (argc != 6)
 		vars->notte = -1;
-	while (i < vars->phils)
-		vars->fork[i++] = 0;
+	// while (i < vars->phils)
+	// 	vars->fork[i++] = 0;
 	return (1);
 }
 
@@ -75,6 +75,7 @@ t_philid	*init_varsid(t_philosophers *vars, int i)
 		varsid[i].full = 0;
 		varsid[i].leftf = 0;
 		varsid[i].i = 0;
+		varsid[i].starteat = 0;
 		if (i - 1 >= 0)
 		{
 			varsid[i].rfork = &varsid[i - 1].lfork;
@@ -107,7 +108,8 @@ void	init_threads(t_philosophers *vars, t_philid *varsid)
 
 	i = 0;
 	pthread_create(&vars->dead, NULL, (void *)&deathclock, (void *)&varsid[i]);
-	pthread_detach(varsid[i].t);
+	pthread_detach(vars->dead);
+	// pthread_detach(varsid[i].t);
 	while (i < vars->phils)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);

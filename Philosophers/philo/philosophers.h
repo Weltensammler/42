@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 18:02:01 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 06:55:04 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_philosophers
 	int				who;
 	int				allfull;
 	pthread_mutex_t	death;
-	int				*fork;
+	// int				*fork;
 	long int		timestart;
 	long int		runtime;
 }	t_philosophers;
