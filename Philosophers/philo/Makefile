@@ -3,14 +3,14 @@ checking.c
 
 OBJECTS = $(SOURCE:.c=.o)
 
-FLAGS = -Werror -Wall -Wextra -pthread
+FLAGS = -Werror -Wall -Wextra -pthread -fsanitize=thread
 
 NAME = philo
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -pthread -fsanitize=address -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(SOURCE) -o $(NAME)

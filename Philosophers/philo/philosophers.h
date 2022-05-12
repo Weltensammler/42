@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/12 06:55:04 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/12 17:04:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_philosophers
 	int				who;
 	int				allfull;
 	pthread_mutex_t	death;
-	// int				*fork;
+	pthread_mutex_t	all;
 	long int		timestart;
 	long int		runtime;
 }	t_philosophers;
@@ -42,8 +42,8 @@ typedef struct s_philid
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
+	long int		time;
 	int				full;
-	int				i;
 	int				leftf;
 	int				*rightf;
 	pthread_mutex_t	*rfork;
@@ -71,5 +71,6 @@ int			printstate(int what, t_philid *philid);
 void		init_threads(t_philosophers *vars, t_philid *varsid);
 int			maindeath(t_philosophers *vars, t_philid *varsid);
 void		*deathclock(t_philid *varsid);
+void		nowtime(t_philosophers *vars, t_philid *varsid);
 
 #endif

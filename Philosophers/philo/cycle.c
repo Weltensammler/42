@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/12 06:44:40 by ben              ###   ########.fr       */
+/*   Updated: 2022/05/12 17:43:55 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	*cycle(t_philid *varsid)
 {
-	while (!checkifdead(varsid->vars, varsid))
+	int	i;
+
+	i = 0;
+	while (!varsid->vars->todeath)
 	{
 		eating(varsid->vars, varsid);
 		sleeping(varsid->vars, varsid);
 		thinking(varsid->vars, varsid);
-		varsid->i++;
-		if (varsid->i == varsid->vars->notte)
+		i++;
+		if (i == varsid->vars->notte)
 			varsid->full = 1;
 	}
 	return (NULL);
@@ -28,32 +31,31 @@ void	*cycle(t_philid *varsid)
 
 int	sleeping(t_philosophers *vars, t_philid *varsid)
 {
-	int	i;
-
-	i = 0;
+	pthread_mutex_lock(&vars->all);
 	timepassed(vars);
+	pthread_mutex_unlock(&vars->all);
 	varsid->startsleep = vars->runtime;
 	if (!checkifdead(vars, varsid))
 		printstate(3, varsid);
 	while (vars->runtime < (varsid->startsleep + vars->tts))
 	{
+		pthread_mutex_lock(&vars->all);
 		timepassed(vars);
+		pthread_mutex_unlock(&vars->all);
 		checkifdead(vars, varsid);
 		usleep(1000);
-		i++;
 	}
 	return (0);
 }
 
 int	thinking(t_philosophers *vars, t_philid *varsid)
 {
-	// int	i;
-
-	// i = 0;
+	pthread_mutex_lock(&vars->all);
 	timepassed(vars);
+	pthread_mutex_unlock(&vars->all);
 	varsid->startthink = vars->runtime;
 	if (!checkifdead(vars, varsid))
 		printstate(4, varsid);
-	usleep(3000);
+	usleep(5000);
 	return (0);
 }

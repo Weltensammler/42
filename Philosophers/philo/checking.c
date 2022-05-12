@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:09:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 18:14:54 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:45:45 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int	checkifdead(t_philosophers *vars, t_philid *varsid)
 {
+	pthread_mutex_lock(&vars->all);
 	timepassed(vars);
+	pthread_mutex_unlock(&vars->all);
 	if (vars->runtime - varsid->starteat > vars->ttd)
 	{
 		vars->todeath = 1;
 		vars->who = varsid->id;
-		// printf("Check death ID %i todeath %i starteat %li runtime %li\n", varsid->id, vars->todeath, varsid->starteat, vars->runtime);
 	}
 	return (0);
 }
@@ -30,7 +31,9 @@ int	maindeath(t_philosophers *vars, t_philid *varsid)
 
 	while (vars->todeath == 0)
 	{
+		pthread_mutex_lock(&vars->all);
 		timepassed(vars);
+		pthread_mutex_unlock(&vars->all);
 		i = 0;
 		while (i < vars->phils)
 		{
@@ -41,12 +44,8 @@ int	maindeath(t_philosophers *vars, t_philid *varsid)
 		if (vars->allfull >= vars->phils)
 			break ;
 	}
-	pthread_mutex_lock(&varsid->vars->death);
 	if (vars->todeath == 1)
-	{
-		printf("%li	%i	died\n", vars->runtime, vars->who);
-		// printf("ID %i todeath %i starteat %li runtime %li\n", varsid->id, vars->todeath, varsid->starteat, vars->runtime);
-	}
+		printstate(5, varsid);
 	return (0);
 }
 
@@ -68,14 +67,25 @@ void	*deathclock(t_philid *varsid)
 		i = 0;
 		while (i < varsid->vars->phils)
 		{
+			pthread_mutex_lock(&varsid->vars->all);
 			timepassed(varsid->vars);
+			pthread_mutex_unlock(&varsid->vars->all);
 			if (varsid->vars->runtime - varsid[i].starteat > varsid->vars->ttd)
 			{
 				varsid->vars->todeath = 1;
-				varsid->vars->who = varsid->id;
+				varsid->vars->who = varsid[i].id;
 			}
 			i++;
 		}
 	}
 	return (NULL);
 }
+
+// void	nowtime(t_philosophers *vars, t_philid *varsid)
+// {
+// 	struct timeval	time;
+
+// 	gettimeofday(&time, NULL);
+// 	varsid->time = ((time.tv_sec * 1000) + \
+// 	(time.tv_usec / 1000)) - vars->timestart;
+// }

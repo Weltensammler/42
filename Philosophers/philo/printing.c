@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:41:56 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 11:46:13 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:50:46 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int	checkinput(int argc, char **argv)
 
 int	printstate(int what, t_philid *varsid)
 {
-	pthread_mutex_lock(&varsid->vars->death);
+	pthread_mutex_lock(&varsid->vars->all);
 	timepassed(varsid->vars);
+	pthread_mutex_unlock(&varsid->vars->all);
 	if (what == 1)
 		printf("%li	%i	has taken a fork\n", varsid->vars->runtime, varsid->id);
 	else if (what == 2)
@@ -48,6 +49,11 @@ int	printstate(int what, t_philid *varsid)
 		printf("%li	%i	is sleeping\n", varsid->vars->runtime, varsid->id);
 	else if (what == 4)
 		printf("%li	%i	is thinking\n", varsid->vars->runtime, varsid->id);
-	pthread_mutex_unlock(&varsid->vars->death);
+	else if (what == 5)
+	{
+		printf("%li	%i	died\n", varsid->vars->runtime, varsid->vars->who);
+		return (0);
+	}
+	pthread_mutex_unlock(&varsid->vars->all);
 	return (0);
 }
