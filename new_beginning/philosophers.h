@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 09:32:04 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:04:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philosophers
 	int				allfull;
 	pthread_mutex_t	death;
 	pthread_mutex_t	all;
-	pthread_mutex_t	check;
 	long int		timestart;
 	long int		runtime;
 }	t_philosophers;
@@ -40,12 +39,10 @@ typedef struct s_philosophers
 typedef struct s_philid
 {
 	int				id;
-	long int		nulltime;
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
 	long int		time;
-	int				ko;
 	int				full;
 	int				leftf;
 	int				*rightf;
@@ -59,11 +56,11 @@ int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			init_vars(int argc, char **argv, t_philosophers *vars);
 t_philid	*init_varsid(t_philosophers *vars, int i);
-long int	gettime(void);
+void		gettime(t_philosophers *vars);
 void		timepassed(t_philosophers *vars);
 int			eating(t_philosophers *vars, t_philid *varsid);
 int			sleeping(t_philosophers *vars, t_philid *varsid);
-int			thinking(t_philid *varsid);
+int			thinking(t_philosophers *vars, t_philid *varsid);
 int			checkifdead(t_philosophers *vars, t_philid *varsid);
 void		*cycle(t_philid *varsid);
 void		take_forks(t_philid *varsid);

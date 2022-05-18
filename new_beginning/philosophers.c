@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 09:35:57 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:06:19 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,19 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	init_vars(argc, argv, &vars);
-	vars.timestart = gettime();
 	varsid = init_varsid(&vars, 0);
-	printf("tte main %i\n", vars.tte);
-	// timepassed(&vars); Why update time here?
+	gettime(&vars);
+	timepassed(&vars);
 	while (i < vars.phils)
 		pthread_mutex_init(&varsid[i++].lfork, NULL);
-	pthread_mutex_init(&vars.death, NULL); // Do I need it?
-	pthread_mutex_init(&vars.all, NULL); // Do I need it?
-	pthread_mutex_init(&vars.check, NULL); // Do I need it?
+	pthread_mutex_init(&vars.death, NULL);
+	pthread_mutex_init(&vars.all, NULL);
 	init_threads(&vars, varsid);
-	while (maindeath(&vars, varsid)) // possible data race
-	pthread_mutex_lock(&vars.check);
+	while (maindeath(&vars, varsid))
 	i = 0;
 	while (i < vars.phils)
 		pthread_mutex_destroy(&varsid[i++].lfork);
 	pthread_mutex_destroy(&varsid->vars->death);
-	pthread_mutex_destroy(&vars.check);
 	free(varsid);
 	return (0);
 }
@@ -72,10 +68,8 @@ t_philid	*init_varsid(t_philosophers *vars, int i)
 		varsid[i].id = i + 1;
 		varsid[i].vars = vars;
 		varsid[i].full = 0;
-		varsid[i].ko = 0;
 		varsid[i].leftf = 0;
 		varsid[i].starteat = 0;
-		varsid[i].nulltime = vars->timestart;
 		if (i - 1 >= 0)
 		{
 			varsid[i].rfork = &varsid[i - 1].lfork;
@@ -93,12 +87,13 @@ t_philid	*init_varsid(t_philosophers *vars, int i)
 	return (varsid);
 }
 
-long int	gettime(void)
+void	gettime(t_philosophers *vars)
 {
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	vars->timestart = (current_time.tv_sec * 1000) + \
+	(current_time.tv_usec / 1000);
 }
 
 void	init_threads(t_philosophers *vars, t_philid *varsid)
@@ -106,27 +101,22 @@ void	init_threads(t_philosophers *vars, t_philid *varsid)
 	int	i;
 
 	i = 0;
-	// Don't know if I need it
-	// pthread_create(&vars->dead, NULL, (void *)&deathclock, (void *)&varsid[i]);
-	// pthread_detach(vars->dead);
+	pthread_create(&vars->dead, NULL, (void *)&deathclock, (void *)&varsid[i]);
+	pthread_detach(vars->dead);
 	while (i < vars->phils)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
 		pthread_detach(varsid[i].t);
-		// pthread_mutex_lock(&vars->all);
-		// timepassed(vars); no need ?
-		// pthread_mutex_unlock(&vars->all);
+		timepassed(vars);
 		i = i + 2;
 	}
-	// usleep(1000);
+	usleep(1000);
 	i = 1;
 	while (i < vars->phils)
 	{
 		pthread_create(&varsid[i].t, NULL, (void *)&cycle, (void *)&varsid[i]);
 		pthread_detach(varsid[i].t);
-		// pthread_mutex_lock(&vars->all); no need?
-		// timepassed(vars);
-		// pthread_mutex_unlock(&vars->all);
+		timepassed(vars);
 		i = i + 2;
 	}
 }
