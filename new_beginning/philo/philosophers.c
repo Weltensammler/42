@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 16:48:46 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 22:15:34 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	if (!checkinput(argc, argv))
-	{
-		printf("Error, wrong input");
-		return (0);
-	}
+		return (0 * printf("Error, wrong input"));
 	init_vars(argc, argv, &vars);
-	vars.timestart = gettime();
 	varsid = init_varsid(&vars, 0);
 	while (i < vars.phils)
 		pthread_mutex_init(&varsid[i++].lfork, NULL);
@@ -33,26 +29,9 @@ int	main(int argc, char **argv)
 	pthread_mutex_init(&vars.check, NULL);
 	init_threads(&vars, varsid);
 	while (maindeath(&vars, varsid))
-	pthread_mutex_lock(&vars.all);
+		;
 	vars.stop = 1;
-	if (vars.todeath == 1)
-	{
-		i = 0;
-		while (i < vars.phils)
-		{
-			pthread_detach(varsid[i].t);
-			i++;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < vars.phils)
-		{
-			pthread_join(varsid[i].t, NULL);
-			i++;
-		}
-	}
+	detachorjoin(&vars, varsid);
 	i = 0;
 	while (i < vars.phils)
 		pthread_mutex_destroy(&varsid[i++].lfork);
@@ -69,6 +48,7 @@ int	init_vars(int argc, char **argv, t_philosophers *vars)
 	vars->tte = ft_atoi(argv[3]);
 	vars->tts = ft_atoi(argv[4]);
 	vars->todeath = 0;
+	vars->timestart = gettime();
 	vars->stop = 0;
 	vars->who = 0;
 	vars->allfull = 0;
@@ -88,10 +68,7 @@ t_philid	*init_varsid(t_philosophers *vars, int i)
 	{
 		varsid[i].id = i + 1;
 		varsid[i].vars = vars;
-		varsid[i].full = 0;
-		varsid[i].leftf = 0;
-		varsid[i].starteat = 0;
-		varsid[i].eatcount = 0;
+		initzero(varsid, vars->phils);
 		varsid[i].nulltime = vars->timestart;
 		if (i - 1 >= 0)
 		{

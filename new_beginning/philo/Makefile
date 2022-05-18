@@ -1,9 +1,9 @@
 SOURCE = philosophers.c philosophers_utils.c eating.c cycle.c printing.c\
-checking.c
+checking.c philo_help.c
 
 OBJECTS = $(SOURCE:.c=.o)
 
-FLAGS = -Werror -Wall -Wextra -pthread -fsanitize=thread -v
+FLAGS = -Werror -Wall -Wextra -pthread -fsanitize=thread
 
 NAME = philo
 

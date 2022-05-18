@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 16:50:07 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 22:14:57 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,9 @@ int			ft_strchr(const char *str, int c);
 int			printstate(int what, t_philid *philid);
 void		init_threads(t_philosophers *vars, t_philid *varsid);
 int			maindeath(t_philosophers *vars, t_philid *varsid);
+void		detach(t_philosophers *vars, t_philid *varsid);
+void		join(t_philosophers *vars, t_philid *varsid);
+void		detachorjoin(t_philosophers *vars, t_philid *varsid);
+void		initzero(t_philid *varsid, int phil);
 
 #endif
