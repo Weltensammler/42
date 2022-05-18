@@ -6,17 +6,17 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 15:47:54 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/11 10:56:42 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:13:24 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	value;
-	int	sign;
+	int			i;
+	long int	value;
+	int			sign;
 
 	i = 0;
 	value = 0;
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 		return (0);
 	while (ft_isdigit(*(str + i)))
 		value = value * 10 + *(str + i++) - '0';
-	return ((int)(sign * value));
+	return (sign * value);
 }
 
 int	ft_isdigit(int c)

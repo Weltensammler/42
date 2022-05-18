@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 22:14:57 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:12:34 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_philid
 	t_philosophers	*vars;
 }	t_philid;
 
-int			ft_atoi(const char *str);
+long int	ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			init_vars(int argc, char **argv, t_philosophers *vars);
 t_philid	*init_varsid(t_philosophers *vars, int i);

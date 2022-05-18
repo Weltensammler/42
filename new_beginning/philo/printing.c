@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:41:56 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 16:47:33 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:11:44 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	checkinput(int argc, char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!ft_strchr("-0123456789", argv[i][j]) && j == 0)
-				return (0);
-			else if (!ft_strchr("0123456789", argv[i][j]) && j > 0)
+			if (!ft_strchr("0123456789", argv[i][j]))
 				return (0);
 			j++;
 		}
+		if (ft_atoi(argv[i]) > 2147483647)
+			return (0);
 		i++;
 	}
 	return (1);
