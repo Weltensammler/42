@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 09:35:57 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:36:02 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < vars.phils)
 		pthread_mutex_destroy(&varsid[i++].lfork);
-	pthread_mutex_destroy(&varsid->vars->death);
+	pthread_mutex_destroy(&vars.death);
 	pthread_mutex_destroy(&vars.check);
 	free(varsid);
 	return (0);

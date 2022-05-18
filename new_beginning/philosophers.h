@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/12 17:04:09 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:58:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_philosophers
 	int				todeath;
 	int				who;
 	int				allfull;
+	int				stop;
 	pthread_mutex_t	death;
 	pthread_mutex_t	all;
+	pthread_mutex_t	check;
 	long int		timestart;
 	long int		runtime;
 }	t_philosophers;
@@ -39,10 +41,13 @@ typedef struct s_philosophers
 typedef struct s_philid
 {
 	int				id;
+	int				test;
+	long int		nulltime;
 	long int		starteat;
 	long int		startsleep;
 	long int		startthink;
 	long int		time;
+	int				eatcount;
 	int				full;
 	int				leftf;
 	int				*rightf;
@@ -56,7 +61,7 @@ int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			init_vars(int argc, char **argv, t_philosophers *vars);
 t_philid	*init_varsid(t_philosophers *vars, int i);
-void		gettime(t_philosophers *vars);
+long int	gettime(void);
 void		timepassed(t_philosophers *vars);
 int			eating(t_philosophers *vars, t_philid *varsid);
 int			sleeping(t_philosophers *vars, t_philid *varsid);

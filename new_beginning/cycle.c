@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/12 17:22:00 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:47:35 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,38 @@
 
 void	*cycle(t_philid *varsid)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	while (!varsid->vars->todeath)
 	{
 		eating(varsid->vars, varsid);
+		if (varsid->full == 1 || varsid->vars->stop == 1)
+			return (NULL);
 		sleeping(varsid->vars, varsid);
+		if (varsid->vars->stop == 1)
+			return (NULL);
 		thinking(varsid->vars, varsid);
-		i++;
-		if (i == varsid->vars->notte)
-			varsid->full = 1;
+		if (varsid->vars->stop == 1)
+			return (NULL);
+		// i++;
+		// if (i == varsid->vars->notte)
+		// {
+		// 	pthread_mutex_lock(&varsid->vars->check);
+		// 	varsid->full = 1;
+		// 	pthread_mutex_unlock(&varsid->vars->check);
+		// }
 	}
 	return (NULL);
 }
 
 int	sleeping(t_philosophers *vars, t_philid *varsid)
 {
-	timepassed(vars);
-	varsid->startsleep = vars->runtime;
+	varsid->startsleep = gettime() - varsid->nulltime;
 	if (!checkifdead(vars, varsid))
 		printstate(3, varsid);
-	while (vars->runtime < (varsid->startsleep + vars->tts))
+	while (gettime() - varsid->nulltime < (varsid->startsleep + vars->tts))
 	{
-		timepassed(vars);
 		checkifdead(vars, varsid);
 		usleep(1000);
 	}
@@ -46,8 +54,7 @@ int	sleeping(t_philosophers *vars, t_philid *varsid)
 
 int	thinking(t_philosophers *vars, t_philid *varsid)
 {
-	timepassed(vars);
-	varsid->startthink = vars->runtime;
+	varsid->startthink = gettime() - varsid->nulltime;
 	if (!checkifdead(vars, varsid))
 		printstate(4, varsid);
 	usleep(5000);

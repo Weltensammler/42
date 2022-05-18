@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/13 18:08:43 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:04:26 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	take_forks(t_philid *varsid)
 	// if (varsid->leftf == 0 && *varsid->rightf == 0)
 	// {
 	pthread_mutex_lock(&varsid->lfork);
-	varsid->leftf = 1;
 	pthread_mutex_lock(varsid->rfork);
+	varsid->leftf = 1;
 	*varsid->rightf = 1;
 	printstate(1, varsid);
 	printstate(1, varsid);

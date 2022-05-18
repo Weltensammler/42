@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 10:41:56 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/12 17:06:49 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:02:37 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,21 @@ int	checkinput(int argc, char **argv)
 int	printstate(int what, t_philid *varsid)
 {
 	pthread_mutex_lock(&varsid->vars->all);
-	timepassed(varsid->vars);
-	if (what == 1)
-		printf("%li	%i	has taken a fork\n", varsid->vars->runtime, varsid->id);
-	else if (what == 2)
-		printf("%li	%i	is eating\n", varsid->vars->runtime, varsid->id);
-	else if (what == 3)
-		printf("%li	%i	is sleeping\n", varsid->vars->runtime, varsid->id);
-	else if (what == 4)
-		printf("%li	%i	is thinking\n", varsid->vars->runtime, varsid->id);
-	else if (what == 5)
+	if (varsid->vars->stop != 1)
 	{
-		printf("%li	%i	died\n", varsid->vars->runtime, varsid->vars->who);
-		return (0);
+		if (what == 1)
+			printf("%li	%i	has taken a fork\n", gettime() - varsid->nulltime, varsid->id);
+		else if (what == 2)
+			printf("%li	%i	is eating\n", varsid->starteat, varsid->id);
+		else if (what == 3)
+			printf("%li	%i	is sleeping\n", varsid->startsleep, varsid->id);
+		else if (what == 4)
+			printf("%li	%i	is thinking\n", varsid->startthink, varsid->id);
+		else if (what == 5)
+		{
+			printf("%li	%i	died\n", gettime() - varsid->nulltime, varsid->vars->who);
+			return (0);
+		}
 	}
 	pthread_mutex_unlock(&varsid->vars->all);
 	return (0);
