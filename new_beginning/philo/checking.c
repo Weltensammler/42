@@ -6,22 +6,22 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:09:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 22:23:49 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:24:30 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	checkifdead(t_philosophers *vars, t_philid *varsid)
-{
-	pthread_mutex_lock(&vars->check);
-	if ((gettime() - varsid->nulltime) - varsid->starteat > vars->ttd)
-	{
-		varsid->test = 1;
-	}
-	pthread_mutex_unlock(&vars->check);
-	return (0);
-}
+// int	checkifdead(t_philosophers *vars, t_philid *varsid)
+// {
+// 	pthread_mutex_lock(&vars->check);
+// 	if ((gettime() - varsid->nulltime) - varsid->starteat > vars->ttd)
+// 	{
+// 		varsid->test = 1;
+// 	}
+// 	pthread_mutex_unlock(&vars->check);
+// 	return (0);
+// }
 
 int	maindeath(t_philosophers *vars, t_philid *varsid)
 {

@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 17:34:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 21:46:42 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:09:13 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	join(t_philosophers *vars, t_philid *varsid)
 
 void	detachorjoin(t_philosophers *vars, t_philid *varsid)
 {
-	if (vars->todeath == 1)
-		detach(vars, varsid);
-	else
-		join(vars, varsid);
+	// if (vars->todeath == 1)
+	// 	detach(vars, varsid);
+	// else
+	join(vars, varsid);
 }
 
 void	initzero(t_philid *varsid, int phil)

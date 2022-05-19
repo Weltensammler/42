@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:51:15 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/18 23:12:34 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:25:15 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_philid	*init_varsid(t_philosophers *vars, int i);
 long int	gettime(void);
 int			eating(t_philosophers *vars, t_philid *varsid);
 int			sleeping(t_philosophers *vars, t_philid *varsid);
-int			thinking(t_philosophers *vars, t_philid *varsid);
+int			thinking(t_philid *varsid);
 int			checkifdead(t_philosophers *vars, t_philid *varsid);
 void		*cycle(t_philid *varsid);
 void		take_forks(t_philid *varsid);
