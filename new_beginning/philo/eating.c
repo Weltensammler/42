@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 18:55:29 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 11:23:56 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:48:24 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,24 @@ int	eating(t_philosophers *vars, t_philid *varsid)
 
 void	take_forks(t_philid *varsid)
 {
-	if (varsid->test != 1 && varsid->vars->stop != 1)
-	{
-		pthread_mutex_lock(&varsid->lfork);
-		pthread_mutex_lock(varsid->rfork);
-		*varsid->rightf = 1;
-		varsid->leftf = 1;
-		printstate(1, varsid);
-		printstate(1, varsid);
-	}
+	// if (varsid->test != 1 && varsid->vars->stop != 1)
+	// {
+	pthread_mutex_lock(&varsid->lfork);
+	pthread_mutex_lock(varsid->rfork);
+	*varsid->rightf = 1;
+	varsid->leftf = 1;
+	printstate(1, varsid);
+	printstate(1, varsid);
+	// }
 }
 
 void	free_forks(t_philid *varsid)
 {
-	if (varsid->test != 1 && varsid->vars->stop != 1)
-	{
+	// if (varsid->test != 1 && varsid->vars->stop != 1)
+	// {
 		varsid->leftf = 0;
 		*varsid->rightf = 0;
 		pthread_mutex_unlock(&varsid->lfork);
 		pthread_mutex_unlock(varsid->rfork);
-	}
+	// }
 }

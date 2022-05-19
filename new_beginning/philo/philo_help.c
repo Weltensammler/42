@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 17:34:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 12:49:44 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:42:39 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	join(t_philosophers *vars, t_philid *varsid)
 	{
 		pthread_mutex_unlock(&varsid->vars->all);
 		pthread_mutex_unlock(&vars->check);
-		pthread_mutex_unlock(&varsid->lfork);
-		pthread_mutex_unlock(varsid->rfork);
+		// pthread_mutex_unlock(&varsid->lfork);
+		// pthread_mutex_unlock(varsid->rfork);
 		pthread_join(varsid[i].t, NULL);
 		i++;
 	}
