@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:47:23 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 13:27:40 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:58:47 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	main(int argc, char **argv)
 	init_threads(&vars, varsid);
 	while (maindeath(&vars, varsid))
 		;
+	pthread_mutex_lock(&vars.check);
 	vars.stop = 1;
+	pthread_mutex_unlock(&vars.check);
 	// printf("before join\n");
 	detachorjoin(&vars, varsid);
 	// printf("after join\n");
