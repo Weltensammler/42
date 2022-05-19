@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 11:09:47 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 11:24:30 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:48:16 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	maindeath(t_philosophers *vars, t_philid *varsid)
 				varsid->vars->todeath = 1;
 				varsid->vars->who = varsid[i].id;
 				printstate(5, varsid);
+				pthread_mutex_unlock(&vars->check);
 				return (0);
 			}
 			i++;

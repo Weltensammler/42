@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 11:06:26 by bschende          #+#    #+#             */
-/*   Updated: 2022/05/19 11:25:35 by bschende         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:44:03 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	*cycle(t_philid *varsid)
 {
-	while (!varsid->vars->todeath)
+	while ((gettime() - varsid->nulltime) - varsid->starteat < varsid->vars->ttd && varsid->vars->stop != 1)
 	{
+		if ((gettime() - varsid->nulltime) - varsid->starteat > varsid->vars->ttd)
+			return (NULL);
 		eating(varsid->vars, varsid);
 		if (varsid->full == 1 || varsid->vars->stop == 1)
 			return (NULL);
