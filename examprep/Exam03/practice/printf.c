@@ -1,9 +1,9 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-int ft_putnbr_base(long n, char *base, int base_len)
+int	ft_putnbr_base(long n, char *base, int base_len)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (n < 0)
@@ -28,7 +28,7 @@ int ft_putnbr_base(long n, char *base, int base_len)
 
 int	string(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -40,9 +40,9 @@ int	string(char *str)
 
 int	ft_printf(const char *fmt, ...)
 {
+	va_list	ap;
 	int		i;
 	int		j;
-	va_list	ap;
 
 	va_start(ap, fmt);
 	i = 0;
