@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:45:29 by bschende          #+#    #+#             */
-/*   Updated: 2021/10/17 23:39:52 by bschende         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:21:54 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	checkflag(const char *fmt, va_list ap)
 
 	i = 0;
 	j = 0;
-	while (*(fmt + i))
+	while (fmt[i])
 	{
 		if (*(fmt + i) == '%')
 		{

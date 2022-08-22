@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 12:25:42 by bschende          #+#    #+#             */
-/*   Updated: 2021/12/10 16:07:59 by ben              ###   ########.fr       */
+/*   Updated: 2022/06/06 14:15:09 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdlib.h>
-# include <unistd.h>
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 3
+#endif
+
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
 
 char	*get_next_line(int fd);
 char	*fillstring(int fd, char *string1);

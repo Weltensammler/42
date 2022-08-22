@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschende <bschende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschende <bschende@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 11:47:31 by bschende          #+#    #+#             */
-/*   Updated: 2021/08/24 10:27:36 by bschende         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:17:12 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 			return (NULL);
 		return (substr);
 	}
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
 	substr = ft_calloc(len + 1, sizeof (*s));
 	if (!substr)
 		return (NULL);

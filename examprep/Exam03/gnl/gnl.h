@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:55:33 by bschende          #+#    #+#             */
-/*   Updated: 2022/06/06 15:30:54 by bschende         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:40:17 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 char	*gnl(int fd);
 char	*fillstring(int fd, char *string1);
-char	*ft_strchr(char *str, int chr);
+int		ft_strchr(char *str, int c);
 char	*ft_strjoin(char *str1, char *str2);
 int		ft_strlen(char *str);
 char	*output(char *string1);

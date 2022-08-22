@@ -6,7 +6,7 @@
 /*   By: bschende <bschende@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 10:36:55 by bschende          #+#    #+#             */
-/*   Updated: 2022/06/06 15:29:10 by bschende         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:41:43 by bschende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,45 +51,37 @@ char	*fillstring(int fd, char *string1)
 	return (string1);
 }
 
-// char	*fillstring(int fd, char *string1)
-// {
-// 	char	*buffer;
-// 	int		i;
-
-// 	i = 1;
-// 	buffer = malloc(BUFFER_SIZE + 1 * sizeof(char));
-// 	if (!buffer)
-// 		return (NULL);
-// 	while (!ft_strchr(string1, '\n') && i != 0)
-// 	{
-// 		i = read(fd, buffer, BUFFER_SIZE);
-// 		if (i == -1)
-// 		{
-// 			free(buffer);
-// 			return (NULL);
-// 		}
-// 		buffer[i] = '\0';
-// 		string1 = ft_strjoin(string1, buffer);
-// 	}
-// 	free(buffer);
-// 	return (string1);
-// }
-
-char	*ft_strchr(char *str, int c)
+int	ft_strchr(char *str, int c)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
 		return (0);
-	while (*(str + i))
+	while (str[i])
 	{
-		if (*(str + i) == (char) c)
-			return ((char *)&str[i]);
+		if (str[i] == c)
+			return (1);
 		i++;
 	}
 	return (0);
 }
+
+// char	*ft_strchr(char *str, int c)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!str)
+// 		return (0);
+// 	while (*(str + i))
+// 	{
+// 		if (*(str + i) == (char) c)
+// 			return ((char *)&str[i]);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 char	*ft_strjoin(char *str1, char *str2)
 {
